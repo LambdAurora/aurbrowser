@@ -57,7 +57,6 @@ function render_main_page(main)
     clear_main(main);
     main.append(page.querySelector('div#index-banner'));
     main.append(page.querySelector('div#main_container'));
-    main.parentNode.append(page.querySelector('footer'));
     let main_stats_card = main.querySelector('div#main_stats_card');
     fetch_html('https://aur.archlinux.org/', true, aur => {
       main_stats_card.append(aur.querySelector('div#pkg-stats table'));
