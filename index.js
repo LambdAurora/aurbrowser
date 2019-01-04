@@ -165,7 +165,7 @@ function render_package_details(doc, main, package)
       content.append(clone_url);
 
       let pkg_base = create_collection_item(doc);
-      pkg_base.innerHTML = `Package base: <a href="?page=package&package=${pkg['PackageBase']}" class="orange-text text-accent-2">${pkg['PackageBase']}</a> (<a href="${AUR_BASE_URL}pkgbase/${pkg['PackageBase']}" class="orange-text text-accent-2">raw</a>)`;
+      pkg_base.innerHTML = `Package base: <a href="?page=package&package=${pkg['PackageBase']}" class="orange-text text-accent-2">${pkg['PackageBase']}</a> (<a href="${AUR_BASE_URL}/cgit/aur.git/plain/PKGBUILD?h=${pkg['PackageBase']}" class="orange-text text-accent-2">raw</a>)`;
       content.append(pkg_base);
 
       let description = create_collection_item(doc);
