@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AUR Browser</title>
+		<meta charset="UTF-8">
+
+		<!--Import Google Icon Font-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<!--Import materialize.css-->
+		<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"  media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism-okaidia.min.css" />
+		<link type="text/css" rel="stylesheet" href="https://aperlambda.github.io/aperlambda.css" />
+		<link type="text/css" rel="stylesheet" href="https://aperlambda.github.io/css/lambdacolors_dark.css" />
+		<link type="text/css" rel="stylesheet" href="https://aperlambda.github.io/css/aperlambda_social_media.css" />
+    <link type="text/css" rel="stylesheet" href="style.css" />
+
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	</head>
+	<body class="lambdacolors_background">
+    <header>
+		  <nav class="lambdacolors_appbar">
+				<div class="nav-wrapper">
+					<a href="." class="brand-logo" style="margin-left: 5px;">AUR Browser</a>
+		    	<a href="#" data-target="mobile-head-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+		    	<ul class="right hide-on-med-and-down">
+						<li><a href="?page=packages&i=0"><i class="material-icons left">apps</i>Packages</a></li>
+		    	</ul>
+				</div>
+		  </nav>
+
+		  <ul class="sidenav lambdacolors_appbar white-text" id="mobile-head-navbar">
+        <li class="search">
+          <form class="search-wrapper" method="get">
+            <input id="sidenav_search" name="search" placeholder="Search">
+            <i class="material-icons">search</i>
+          </form>
+        </li>
+				<li><a href="?page=packages&i=0" class="white-text"><i class="white-text material-icons left">apps</i>Packages</a></li>
+		  </ul>
+		</header>
+
+    <main>
+    </main>
+
+    <div id="pkgbuild_viewer" class="modal">
+      <div class="modal-content">
+        <h4 id="pkgbuild_viewer_title">PKGBUILD of</h4>
+        <pre>
+          <code id="pkgbuild_code" class="language-bash"></code>
+        </pre>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-orange btn-flat">Close</a>
+      </div>
+    </div>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+		<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js"></script>
+    <script type="text/javascript" src="https://prismjs.com/components/prism-bash.js"></script>
+    <script type="text/javascript" src="scripts/utils.js"></script>
+    <script type="text/javascript" src="scripts/scrapper.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+		<script>
+      M.AutoInit();
+    </script>
+  </body>
+</html>
