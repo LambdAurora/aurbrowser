@@ -99,7 +99,7 @@ function render_search_page(doc, main, details)
         let tr = doc.createElement('tr');
 
         let td_name = td();
-        td_name.innerHTML = `<a href="/?page=package&package=${result['Name']}" class="orange-text text-accent-2">${result['Name']}</a>`;
+        td_name.innerHTML = `<a href="?page=package&package=${result['Name']}" class="orange-text text-accent-2">${result['Name']}</a>`;
 
         let td_version = td();
         td_version.innerText = result['Version'];
@@ -221,7 +221,7 @@ function render_package_details(doc, main, package)
 
       if (pkg['Conflicts']) {
         let conflicts = create_collection_item(doc);
-        conflicts.innerHTML = `Conflicts: ${pkg['Conflicts'].map(conflict => `<a href="/?page=package&package=${conflict}" class="orange-text text-accent-2">${conflict}</a>`).join(', ')}`;
+        conflicts.innerHTML = `Conflicts: ${pkg['Conflicts'].map(conflict => `<a href="?page=package&package=${conflict}" class="orange-text text-accent-2">${conflict}</a>`).join(', ')}`;
         content.append(conflicts);
       }
 
@@ -478,7 +478,7 @@ function main()
   document.addEventListener('DOMContentLoaded', () => {
     let search = document.querySelector('#search');
     if (search)
-      add_on_submit_event(search, () => window.location = `/?page=search&by=name-desc&search=${search.value}`)
+      add_on_submit_event(search, () => window.location = `?page=search&by=name-desc&search=${search.value}`)
   });
 }
 
