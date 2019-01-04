@@ -443,8 +443,17 @@ function main()
         if (!queries.hasOwnProperty('package')) render_error_page(main);
         else render_package_details(document, main, queries.package);
         break;
+      case 'package_base':
+        if (!queries.hasOwnProperty('package')) render_error_page(main);
+        else render_main_page(main);
+        break;
+      case 'account':
+        if (!queries.hasOwnProperty('account')) render_error_page(main);
+        else render_main_page(main);
+        break;
       default:
         render_error_page(main, "Unknown page.");
+        break;
     }
   } else {
     if (queries.hasOwnProperty('search')) {

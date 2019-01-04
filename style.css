@@ -1,3 +1,19 @@
+/*
+ * Style of AUR Browser
+ */
+
+body
+{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main
+{
+  flex: 1 0 auto;
+}
+
 .keyword_badge
 {
   font-weight: 300;
