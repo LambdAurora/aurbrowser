@@ -88,50 +88,25 @@ function render_search_page(doc, main, details)
       card_title.innerText = `Results of search "${details.search}" (${json.resultcount}):`;
       card_content.append(card_title);
 
-      let table = doc.createElement('table');
-      table.className += 'highlight white-text';
-      let thead = doc.createElement('thead');
-      thead.innerHTML = `<tr><th>Name</th><th>Version</th><th>Votes</th><th>Popularity</th><th>Description</th><th>Maintainer</th></tr>`
-      table.append(thead);
-      let tbody = doc.createElement('tbody');
-      table.append(tbody);
-      json.results.forEach(result => {
-        let tr = doc.createElement('tr');
-
-        let td_name = td();
-        td_name.innerHTML = `<a href="?page=package&package=${result['Name']}" class="orange-text text-accent-2">${result['Name']}</a>`;
-
-        let td_version = td();
-        td_version.innerText = result['Version'];
-        if (result['OutOfDate'])
-          td_version.className += 'red-text';
-
-        let td_votes = td();
-        td_votes.innerText = result['NumVotes'];
-
-        let td_popularity = td();
-        td_popularity.innerText = result['Popularity'];
-
-        let td_description = td();
-        td_description.innerText = result['Description'];
-
-        let td_maintainer = td();
-        if (!result['Maintainer']) {
-          td_maintainer.className = 'red-text';
-          td_maintainer.innerText = 'Orphan';
-        } else td_maintainer.innerText = result['Maintainer'];
-
-        tr.append(td_name);
-        tr.append(td_version);
-        tr.append(td_votes);
-        tr.append(td_popularity);
-        tr.append(td_description);
-        tr.append(td_maintainer);
-        tbody.append(tr);
+      card.append(card_content);
+      card.append(div('divider'));
+      json.results.map(result => {
+        return {
+          name: result['Name'],
+          version: result['Version'],
+          description: result['Description'],
+          out_of_date: result['OutOfDate'],
+          last_modified: result['LastModified'],
+          votes: result['NumVotes'],
+          popularity: result['Popularity'],
+          maintainer: result['Maintainer']
+         };
+       }).forEach(pkg => {
+         card.append(build_package_section(pkg));
+         card.append(div('divider'));
       });
 
-      card.append(card_content);
-      card.append(table);
+      //card.append(table);
       container.append(card);
 
       clear_main(main);
@@ -384,10 +359,13 @@ function render_package_details(doc, main, package)
             row_title.append(title);
             card_comment.append(row_title);
             let row = create_row_div();
-            row.className += ' valign-wrapper';
-            let content = div('col s12');
-            content.style['margin-left'] = '15px';
-            content.append(p(comment_content.innerText));
+            let content = doc.createElement('blockquote');
+            content.className += 'col s12';
+            content.style['margin-left'] = '20px';
+            content.style['margin-right'] = '1em';
+            let text = p(comment_content.innerText);
+            text.style['margin-right'] = '1.5em';
+            content.append(text);
             content.innerHTML = content.innerHTML.replace('<br>', '').replace('<br>', '');
             row.append(content);
             card_comment.append(row);
@@ -424,10 +402,13 @@ function render_package_details(doc, main, package)
             row_title.append(title);
             card_comment.append(row_title);
             let row = create_row_div();
-            row.className += ' valign-wrapper';
-            let content = div('col s12');
-            content.style['margin-left'] = '15px';
-            content.append(p(comment_content.innerText));
+            let content = doc.createElement('blockquote');
+            content.className += 'col s12';
+            content.style['margin-left'] = '20px';
+            content.style['margin-right'] = '1em';
+            let text = p(comment_content.innerText);
+            text.style['margin-right'] = '1.5em';
+            content.append(text);
             content.innerHTML = content.innerHTML.replace('<br>', '').replace('<br>', '');
             row.append(content);
             card_comment.append(row);

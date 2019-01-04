@@ -57,3 +57,25 @@ li.search .search-wrapper i.material-icons
   right: 10px;
   cursor: pointer;
 }
+
+td.pkg_name
+{
+  max-width: 16.6666666667%;
+}
+
+td.version
+{
+  max-width: 16.6666666667%;
+}
+
+@media only screen and (min-width: 601px) {
+  td.pkg_name
+  {
+    max-width: 10em;
+  }
+
+  td.version
+  {
+    max-width: 8em;
+  }
+}

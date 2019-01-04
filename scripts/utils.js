@@ -45,7 +45,7 @@ function create_collection_item(doc)
   return li;
 }
 
-const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+const CORS_PROXY = "https://corsanywhere.gigalixirapp.com/";
 
 function check_status(response)
 {
@@ -58,7 +58,12 @@ function check_status(response)
 
 function fetch_rpc(url, lambda)
 {
-  fetch(`${CORS_PROXY}${url}`, { method: 'GET', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' } })
+  let headers = new Headers({
+    //'Access-Controll-Allow-Origin': '*',
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  })
+  fetch(`${CORS_PROXY}${url}`, { method: 'GET', mode: 'cors', headers: headers })
     .then(res => check_status(res))
     .then(res => res.json())
     .then(res => lambda(res))
@@ -90,10 +95,24 @@ function fetch_html(url, proxy, lambda)
   });
 }
 
+function convert_timestamp(timestamp)
+{
+  let date_obj = new Date(timestamp * 1000);
+  let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  let year = date_obj.getFullYear();
+  let month = months[date_obj.getMonth()];
+  let date = date_obj.getDate();
+  let hour = date_obj.getHours();
+  let min = date_obj.getMinutes();
+  let sec = date_obj.getSeconds();
+  let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+  return time;
+}
+
 function to_array(obj) {
-  var array = [];
+  let array = [];
   // iterate backwards ensuring that length is an UInt32
-  for (var i = obj.length >>> 0; i--;) {
+  for (let i = obj.length >>> 0; i--;) {
     array[i] = obj[i];
   }
   return array;
@@ -127,6 +146,6 @@ function add_on_submit_event(element, callback, preventDefault)
 }
 
 String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
+    let target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
 };
