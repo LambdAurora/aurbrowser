@@ -3,6 +3,8 @@
 	<head>
 		<title>AUR Browser</title>
 		<meta charset="UTF-8">
+		<meta name="description" content="A web AUR browser.">
+		<meta name="keywords" content="ArchLinux, AUR, packages">
 
 		<!--Import Google Icon Font-->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -27,6 +29,8 @@
 					<a href="." class="brand-logo" style="margin-left: 5px;">AUR Browser</a>
 		    	<a href="#" data-target="mobile-head-navbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 		    	<ul class="right hide-on-med-and-down">
+						<li><a href="."><i class="material-icons left">home</i>Home</a></li>
+						<li><a href="?page=about"><i class="material-icons left">info</i>About</a></li>
 						<li><a href="?page=packages&i=0"><i class="material-icons left">apps</i>Packages</a></li>
 		    	</ul>
 				</div>
@@ -39,6 +43,8 @@
             <i class="material-icons">search</i>
           </form>
         </li>
+				<li><a href="." class="white-text"><i class="white-text material-icons left">home</i>Home</a></li>
+				<li><a href="?page=about" class="white-text"><i class="white-text material-icons left">info</i>About</a></li>
 				<li><a href="?page=packages&i=0" class="white-text"><i class="white-text material-icons left">apps</i>Packages</a></li>
 		  </ul>
 		</header>
@@ -56,7 +62,7 @@
 		  </div>
 			<div class="footer-copyright">
 				<div class="container">
-		  		v1.0.2 <a href="https://github.com/LambdAurora/aurbrowser/blob/master/LICENSE" class="grey-text text-darken-1 right">MIT License</a>
+		  		v${version} <a href="https://github.com/LambdAurora/aurbrowser/blob/master/LICENSE" class="grey-text text-darken-1 right">MIT License</a>
 		  	</div>
 			</div>
 		</footer>

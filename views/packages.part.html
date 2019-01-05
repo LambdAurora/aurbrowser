@@ -1,0 +1,60 @@
+<main>
+  <div class="row">
+    <div class="col s12 grey lighten-2 z-depth-1">
+      <form method="get">
+        <div class="input-field col s3">
+          <select id="search_by" class="browser-default" name="by">
+            <option value="name-desc" selected>Name, Description</option>
+            <option value="name">Name only</option>
+            <option value="maintainer">Maintainer</option>
+          </select>
+        </div>
+        <div class="input-field col s9">
+          <i class="material-icons prefix">search</i>
+          <input id="search" name="search" type="search" required>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row grey lighten-1">
+    <div class="col s12">
+      <ul class="pagination center">
+        <li class="waves-effect"><a href="?page=packages&i=0" class='id_search_first'><i class="material-icons">first_page</i></a></li>
+        <li class="waves-effect"><a href="#!" class='id_search_previous'><i class="material-icons">chevron_left</i></a></li>
+        <li class="waves-effect"><a href="?page=packages&i=0" class='id_search_0'>1</a></li>
+        <li class="waves-effect"><a href="?page=packages&i=50" class='id_search_1'>2</a></li>
+        <li class="waves-effect"><a href="?page=packages&i=100" class='id_search_2'>3</a></li>
+        <li class="waves-effect"><a href="?page=packages&i=150" class='id_search_3'>4</a></li>
+        <li class="waves-effect"><a href="?page=packages&i=200" class='id_search_4'>5</a></li>
+        <li class="waves-effect"><a href="#!" class='id_search_next'><i class="material-icons">chevron_right</i></a></li>
+        <li class="waves-effect"><a href="#!" class='id_search_last'><i class="material-icons">last_page</i></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="main_card" class="card grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">Packages:</span>
+      </div>
+      <div class="divider"></div>
+    </div>
+  </div>
+
+  <div class="row grey lighten-1">
+    <div class="col s12">
+      <ul class="pagination center">
+        <li class="waves-effect"><a href="?page=packages&i=0" class='id_search_first'><i class="material-icons">first_page</i></a></li>
+        <li class="waves-effect"><a href="#!" class='id_search_previous'><i class="material-icons">chevron_left</i></a></li>
+        <li class="waves-effect"><a href="?page=packages&i=0" class='id_search_0'>1</a></li>
+        <li class="waves-effect"><a href="?page=packages&i=50" class='id_search_1'>2</a></li>
+        <li class="waves-effect"><a href="?page=packages&i=100" class='id_search_2'>3</a></li>
+        <li class="waves-effect"><a href="?page=packages&i=150" class='id_search_3'>4</a></li>
+        <li class="waves-effect"><a href="?page=packages&i=200" class='id_search_4'>5</a></li>
+        <li class="waves-effect"><a href="#!" class='id_search_next'><i class="material-icons">chevron_right</i></a></li>
+        <li class="waves-effect"><a href="#!" class='id_search_last'><i class="material-icons">last_page</i></a></li>
+      </ul>
+    </div>
+  </div>
+</main>

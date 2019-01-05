@@ -33,12 +33,9 @@ main
 
 li.search
 {
-  position: absolute;
   left: 0;
   right 0;
-  top: 160px;
-  margin-top: 1px;
-  padding: 1px 0 0 0;
+  padding: 0;
   z-index: 2;
 }
 
@@ -74,6 +71,11 @@ li.search .search-wrapper i.material-icons
   cursor: pointer;
 }
 
+.icon-block img.responsive-img
+{
+  max-width: 64px;
+}
+
 td.pkg_name
 {
   max-width: 16.6666666667%;
@@ -94,4 +96,13 @@ td.version
   {
     max-width: 8em;
   }
+}
+
+/*
+ * Materialize re-definitions
+ */
+
+.pagination li.active
+{
+  background-color: #ffab40;
 }
