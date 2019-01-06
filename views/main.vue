@@ -1,0 +1,39 @@
+<template>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br />
+      <br />
+      <h1 class="header center blue-grey-text text-lighten-4 brand-title">AUR Browser</h1>
+      <div class="row center">
+        <h5 class="header col s12 light white-text">A web AUR browser.</h5>
+      </div>
+      <div class="row">
+        <form class="col s12" method="get">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix white-text">search</i>
+              <input id="search" name="search" type="search" required>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="main_container" class="container">
+    <div class="row">
+      <div class="col s12 m6 offset-m3">
+        <div class="card grey darken-3">
+          <div id="main_stats_card" class="card-content white-text">
+            <span class="card-title">Statistics</span>
+            <div id="main_main_progress">
+              <div class="progress">
+                <div class="indeterminate"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

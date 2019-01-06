@@ -1,0 +1,15 @@
+<template>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br />
+      <br />
+      <h1 class="header center blue-grey-text text-lighten-4 brand-title">An error happened :c</h1>
+      <div class="row center">
+        <h5 id="error_details" class="header col s12 light white-text">{{ error_message }}</h5>
+      </div>
+      <div class="row center">
+        <a href="." class="btn-large waves-effect waves-light orange pulse">Main page</a>
+      </div>
+    </div>
+  </div>
+</template>
