@@ -1,7 +1,7 @@
 #
 # AperLambda ignore file
 #
-# v0.6
+# v0.7
 
 # JetBrains
 .idea/
@@ -52,11 +52,13 @@ desktop.ini
 # File types
 *.dll
 *.so
+*.dylib
 *.lib
 lib*.a
 
 # Common
 bin/
 build/
+dist/
 run/
 target/

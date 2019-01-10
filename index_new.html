@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AUR Browser</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="A web AUR browser.">
+  <meta name="keywords" content="ArchLinux, AUR, packages">
+
+  <link rel="manifest" href="/manifest.json">
+
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism-okaidia.min.css"/>
+  <link type="text/css" rel="stylesheet" href="https://aperlambda.github.io/aperlambda.css"/>
+  <link type="text/css" rel="stylesheet" href="https://aperlambda.github.io/css/lambdacolors_dark.css"/>
+  <link type="text/css" rel="stylesheet" href="https://aperlambda.github.io/css/aperlambda_social_media.css"/>
+  <link type="text/css" rel="stylesheet" href="style.css"/>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body class="lambdacolors_background">
+  <noscript>
+    <span style="font-size: larger;">We're sorry but AURBrowser doesn't work without JavaScript enabled. Please enable it to continue.</span>
+  </noscript>
+
+  <div id="app"></div>
+
+  <!--JavaScript at end of body for optimized loading-->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB"
+        crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js"></script>
+  <script type="text/javascript" src="https://prismjs.com/components/prism-bash.js"></script>
+  <script type="text/javascript" src="./lib/lambda_dom.js"></script>
+  <script>const lambda_doc = new LambdaDOM(document);</script>
+  <script type="text/javascript" src="src/utils.js"></script>
+  <script type="text/javascript" src="src/scrapper.js"></script>
+  <script type="text/javascript" src="src/app.js"></script>
+  <script>
+  	M.AutoInit();
+  </script>
+</body>
+</html>

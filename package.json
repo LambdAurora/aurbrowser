@@ -1,0 +1,18 @@
+{
+  "name": "aurbrowser",
+  "version": "1.2.0",
+  "private": true,
+  "scripts": {
+    "serve": "cross-env PLATFORM='web' vue-cli-service serve",
+    "build": "cross-env PLATFORM='web' vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "vue": "^2.5.21",
+    "vue-router": "^3.0.2"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^3.3.0",
+    "cross-env": "^5.2.0"
+  }
+}
