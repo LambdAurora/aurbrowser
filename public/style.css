@@ -1,0 +1,65 @@
+/*
+ * Style of AUR Browser
+ */
+
+#app-main
+{
+    display: flex;
+    min-height: calc(100vh - 227px - 64px);
+    flex-direction: column;
+    flex: 1 0 auto;
+}
+
+main
+{
+    flex: 1 0 auto;
+}
+
+a
+{
+    color: #ffab40;
+}
+
+li.search
+{
+    left: 0;
+    right: 0;
+    padding: 0;
+    z-index: 2;
+}
+
+li.search .search-wrapper
+{
+    color: #777;
+    margin-top: -1px;
+    border-top: 1px solid rgba(0, 0, 0, 0.14);
+    -webkit-transition: margin .25s ease;
+    transition: margin .25 ease;
+}
+
+li.search .search-wrapper #sidenav_search
+{
+    color: #777;
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+    height: 62px;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 45px 0 30px;
+    border: 0;
+}
+
+li.search .search-wrapper i.material-icons
+{
+    position: absolute;
+    top: 21px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.v-input input[type=button] {
+    text-align: left;
+}

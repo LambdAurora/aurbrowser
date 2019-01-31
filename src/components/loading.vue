@@ -16,17 +16,14 @@
 
 <script>
 	export default {
-		name: "loader"
+		name: "loading"
 	}
 </script>
 
 <style scoped>
   .preloader-wrapper {
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
+    top: calc(50vh - 32px);
+    left: calc(50% - 32px);
   }
 </style>

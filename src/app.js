@@ -7,13 +7,16 @@
  * see the LICENSE file.
  */
 
-var vm = new Vue({
-	el: '#app',
-	data: {
-		currentRouter: window.location.pathname
-	},
-});
+import aurbrowser_package from '../package';
 
-if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('./src/sw.js').then(() => console.log('Service Worker registered.'));
+function is_by_filter_valid(by_filter)
+{
+	return by_filter === 'name' || by_filter === 'name-desc' || by_filter === 'maintainer';
+}
+
+export default {
+	VERSION: aurbrowser_package.version,
+	is_search_valid: (query, by_filter) => {
+		return query !== undefined && query.length !== 0 && is_by_filter_valid(by_filter);
+	}
 }
