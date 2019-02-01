@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <!--Import materialize.css-->
-	<!--<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection"/>-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism-okaidia.min.css"/>
@@ -37,30 +36,9 @@
 
     <!--JavaScript at end of body for optimized loading-->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB"
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js"></script>
     <script type="text/javascript" src="https://prismjs.com/components/prism-bash.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-      	//M.AutoInit();
-
-      	let app = document.querySelector('#app');
-
-      	let inputs = document.querySelectorAll('input');
-				let array = [];
-				// iterate backwards ensuring that length is an UInt32
-				for (let i = inputs.length >>> 0; i--;) {
-					array[i] = inputs[i];
-				}
-
-				array.forEach(i => {
-      		console.log(i);
-      		i.className += 'browser-default';
-        });
-
-      });
-    </script>
   </body>
 </html>
