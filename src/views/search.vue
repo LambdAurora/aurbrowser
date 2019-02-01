@@ -10,23 +10,23 @@
         </v-flex>
       </v-layout>
     </div>
-    <div class="container">
-      <div class="card grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">Results of search "{{ query }}" ({{ results_count }}):</span>
-        </div>
-        <div class="divider"></div>
-        <div v-if="loading" class="progress">
-          <div class="indeterminate"></div>
+    <v-container>
+      <v-card class="grey darken-1">
+        <v-card-title class="white-text" primary-title>
+          <span class="headline">Results of search "{{ query }}" ({{ results_count }}):</span>
+        </v-card-title>
+        <divider />
+        <div v-if="loading">
+          <v-progress-linear :indeterminate="true"></v-progress-linear>
         </div>
         <div v-else v-for="result in results" v-bind:key="result.name">
           <package-section v-bind:name="result.name" v-bind:version="result.version" v-bind:out_of_date="result.out_of_date" v-bind:description="result.description"
                            v-bind:maintainer="result.maintainer" v-bind:last_modified="result.last_modified" v-bind:votes="result.votes"
                            v-bind:popularity="result.popularity"></package-section>
-          <div class="divider"></div>
+          <divider />
         </div>
-      </div>
-    </div>
+      </v-card>
+    </v-container>
   </div>
 </template>
 
@@ -35,6 +35,7 @@
 	import aur from '../aur';
 	import utils from '../utils';
 
+	import Divider from '../components/divider.vue';
 	import PackageSection from '../components/package_section.vue';
 
 	function get_by_name_from_value(value)
@@ -74,6 +75,7 @@
 			}
 		},
 		components: {
+			Divider,
 			PackageSection
 		},
 		methods: {

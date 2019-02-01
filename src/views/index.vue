@@ -2,8 +2,8 @@
   <v-container>
     <v-layout id="index-banner">
       <v-flex>
-        <h1 class="header center blue-grey--text text--lighten-4 brand-title">AUR Browser</h1>
-        <h5 class="header center light white--text">A web AUR browser.</h5>
+        <h1 class="center blue-grey--text text--lighten-4 brand-title">AUR Browser</h1>
+        <h5 class="center light white--text">A web AUR browser.</h5>
         <v-layout>
           <v-flex class="xs12 md10 offset-md1">
             <v-container>
@@ -24,8 +24,12 @@
             <div id="main_main_progress" v-if="!has_statistics_loaded">
               <v-progress-linear :indeterminate="true"></v-progress-linear>
             </div>
-            <table v-html="statistics" v-else>
-            </table>
+            <v-data-table :items="statistics" v-else hide-actions hide-headers>
+              <template slot="items" slot-scope="props">
+                <td>{{ props.item.name }}</td>
+                <td class="text-xs-right">{{ props.item.data }}</td>
+              </template>
+            </v-data-table>
           </v-card-text>
         </v-card>
       </v-flex>
@@ -58,7 +62,7 @@
 		{
 			aur.get_statistics(stats => {
 				this.has_statistics_loaded = true;
-				this.statistics = stats.innerHTML;
+				this.statistics = utils.to_array(stats.querySelectorAll('tr')).map(stat => { return {name: stat.querySelector('td.stat-desc').innerText, data: stat.querySelectorAll('td')[1].innerText}; });
 			});
 		}
 	}

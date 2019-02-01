@@ -1,18 +1,18 @@
 <template>
-  <div class="section white-text">
-    <h5><a :href="'/package/' +  name">{{ name }}</a> v<span v-bind:class="{ 'red-text': out_of_date }">{{ version }}</span></h5>
-    <p style="padding-left: 5px">{{ description }}</p>
-    <div class="row">
-      <div v-if="last_modified" class="col s6">
+  <div class="section white--text">
+    <h5><a :href="'/package/' +  name">{{ name }}</a> v<span v-bind:class="{ 'red--text': out_of_date }">{{ version }}</span></h5>
+    <p style="padding-left: 5px; padding-right: 5px;">{{ description }}</p>
+    <v-layout row wrap style="margin-bottom: auto;">
+      <v-flex v-if="last_modified" class="xs6">
         From: <a :href="'/account/' + maintainer">{{ maintainer }}</a> • {{ last_modified }}
-      </div>
-      <div v-else class="col s6">
+      </v-flex>
+      <v-flex v-else class="xs6">
         From: <a :href="'/account/' + maintainer">{{ maintainer }}</a>
-      </div>
-      <div class="col s6">
+      </v-flex>
+      <v-flex class="xs6" style="padding-right: .75rem;">
         <span class="right">Votes: {{ votes }} • Popularity: {{ popularity }}</span>
-      </div>
-    </div>
+      </v-flex>
+    </v-layout>
   </div>
 </template>
 
@@ -35,10 +35,7 @@
 <style scoped>
   .section {
     padding-left: 5px;
-  }
-
-  .row {
-    margin-bottom: auto;
+    padding-bottom: 1rem;
   }
 
   a
