@@ -63,3 +63,7 @@ li.search .search-wrapper i.material-icons
 .v-input input[type=button] {
     text-align: left;
 }
+
+.v-btn {
+	z-index: 0;
+}
