@@ -10,8 +10,6 @@
 import CONSTANTS from './constants';
 import utils from './utils';
 
-const CORS_PROXY = "https://corsanywhere.gigalixirapp.com/";
-
 function build_url(page, details)
 {
 	switch (page) {
@@ -36,21 +34,6 @@ function build_url(page, details)
 	}
 }
 
-function fetch_raw(url, proxy, lambda)
-{
-	if (proxy)
-		url = `${CORS_PROXY}${url}`;
-	fetch(`${url}`).then(res => {
-		if (res.status === 200)
-			res.text().then(content => {
-				lambda(content);
-			});
-		else console.log(`Cannot retrieve page '${url}', got code ${res.status}.`);
-	}).catch(error => {
-		console.log(`Cannot retrieve page '${url}', error: ${error.message}.`);
-	});
-}
-
 function check_status(response)
 {
 	if (response.status >= 200 && response.status <= 400)
@@ -67,7 +50,7 @@ function fetch_rpc(url, lambda)
 		'Content-Type': 'application/json',
 		'Accept': 'application/json'
 	});
-	fetch(`${CORS_PROXY}${url}`, {method: 'GET', mode: 'cors', headers: headers})
+	fetch(`${CONSTANTS.CORS_PROXY}${url}`, {method: 'GET', mode: 'cors', headers: headers})
 		.then(res => check_status(res))
 		.then(res => res.json())
 		.then(res => lambda(res))
@@ -78,12 +61,38 @@ String.prototype.replaceAll = function (search, replacement) {
 	return target.replace(new RegExp(search, 'g'), replacement);
 };
 
+function get_package_property(pkginfo, property)
+{
+	let result;
+	pkginfo.querySelectorAll('tr').forEach(line => {
+		if (line.querySelector('th').innerText.split(':')[0] === property) {
+			result = line.querySelector('td');
+		}
+	});
+	return result;
+}
+
+function get_package_link(url)
+{
+	let icon = null;
+	let foreground = null;
+	if (url.startsWith('https://github.com/') || url.startsWith('https://www.github.com/')) {
+		icon = 'github';
+		foreground = 'github';
+	}
+	return {
+		icon: icon,
+		foreground: foreground,
+		url: url
+	}
+}
+
 export default {
 	build_url: build_url,
 	get_statistics: (callback) => {
 		let page_doc = document.implementation.createHTMLDocument("Some page");
 		let html = page_doc.createElement('html');
-		fetch_raw(CONSTANTS.AUR_BASE_URL, true, content => {
+		utils.fetch_raw(CONSTANTS.AUR_BASE_URL, true, content => {
 			html.innerHTML = content;
 			page_doc.body.appendChild(html);
 			callback(html.querySelector('div#pkg-stats table'));
@@ -92,7 +101,7 @@ export default {
 	get_packages: (index, callback) => {
 		let page_doc = document.implementation.createHTMLDocument("Some page");
 		let html = page_doc.createElement('html');
-		fetch_raw(build_url('packages', {index: index}), true, content => {
+		utils.fetch_raw(build_url('packages', {index: index}), true, content => {
 			html.innerHTML = content;
 			page_doc.body.appendChild(html);
 			let pkglist_stats = html.querySelector('div.pkglist-stats p').innerText.replaceAll('\n', '').split(' ');
@@ -111,16 +120,16 @@ export default {
 				}), parseInt(pkglist_stats[0].replace('.', '')));
 		});
 	},
-	get_package: (package_name, callback) => {
+	get_package: (package_name, callback, error) => {
 		let page_doc = document.implementation.createHTMLDocument("Some page");
 		let html = page_doc.createElement('html');
 
 		let pkg_aur_url = build_url('package', {package: package_name});
-		fetch_raw(pkg_aur_url, true, res => {
+		utils.fetch_raw(pkg_aur_url, true, res => {
 			html.innerHTML = res;
 			page_doc.body.appendChild(html);
 
-		/*	let package_details = html.querySelector('div#pkgdetails');
+			let package_details = html.querySelector('div#pkgdetails');
 			let package_info = package_details.querySelector('table#pkginfo');
 			let pkg_submitter = get_package_property(package_info, 'Submitter').innerText;
 			let pkg_maintainer = get_package_property(package_info, 'Maintainer').innerText;
@@ -130,8 +139,9 @@ export default {
 			let pkg_deps_number = pkgdeps.querySelector('h3').innerText.replace('Dependencies (', '').replace(')', '');
 			let pkgreqs = html.querySelector('div#pkgreqs');
 			let pkg_reqs_number = pkgreqs.querySelector('h3').innerText.replace('Required by (', '').replace(')', '');
-			let pkgfiles = html.querySelector('div#pkgfiles');
-			let pkg_files_number = pkgfiles.querySelector('h3').innerText.replace('Sources (', '').replace(')', '');*/
+			let pkg_files_number = html.querySelector('div#pkgfiles').querySelector('h3').innerText.replace('Sources (', '').replace(')', '');
+
+			let pkg_reqs_list = pkgreqs.querySelector('#pkgreqslist');
 
 			fetch_rpc(build_url('package_v2', {package: package_name}), json => {
 				let pkg = json.results[0];
@@ -140,10 +150,48 @@ export default {
 					name: pkg['Name'],
 					version: pkg['Version'],
 					out_of_date: pkg['OutOfDate'],
-					description: pkg['Description']
+					description: pkg['Description'],
+					license: pkg['License'],
+					link: get_package_link(pkg['URL']),
+					keywords: pkg['Keywords'],
+					votes: pkg['NumVotes'],
+					orphan: !pkg['Maintainer'],
+					popularity: pkg['Popularity'],
+					submitter: pkg_submitter,
+					maintainer: pkg_maintainer.split(' ').map(person => person.replace('(', '').replace(',', '').replace(')', '')),
+					last_packager: pkg_last_packager,
+					first_submitted: get_package_property(package_info, 'First Submitted').innerText,
+					last_modified: get_package_property(package_info, 'Last Updated').innerText,
+					conflicts: pkg['Conflicts'],
+					dependencies: {
+						count: pkg_deps_number,
+						items: utils.to_array(pkgdeps.querySelector('#pkgdepslist').querySelectorAll('li')).map(li => {
+							utils.to_array(li.querySelectorAll('a')).forEach(a => {
+								if (a.getAttribute('href').startsWith('/packages/')) {
+									a.href = `/package/${a.getAttribute('href').replace('/packages/', '').replace('/', '')}`;
+								}
+							});
+							return li.innerHTML;
+						})
+					},
+					required_by: {
+						count: pkg_reqs_number,
+						items: pkg_reqs_list ? utils.to_array(pkg_reqs_list.querySelectorAll('li')).map(li => {
+							utils.to_array(li.querySelectorAll('a')).forEach(a => {
+								if (a.getAttribute('href').startsWith('/packages/')) {
+									a.href = `/package/${a.getAttribute('href').replace('/packages/', '').replace('/', '')}`;
+								}
+							});
+							return li.innerHTML;
+						}) : []
+					},
+					files: {
+						count: pkg_files_number,
+						items: utils.to_array(html.querySelector('ul#pkgsrcslist').children).map(child => child.innerHTML)
+					}
 				});
 			});
-		});
+		}, error);
 	},
 	search: (keywords, by, callback) => {
 		fetch_rpc(build_url('search', {field: by, keywords: keywords}), json => {

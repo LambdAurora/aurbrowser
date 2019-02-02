@@ -15,7 +15,7 @@
         <v-card-title class="white-text" primary-title>
           <span class="headline">Results of search "{{ query }}" ({{ results_count }}):</span>
         </v-card-title>
-        <divider />
+        <divider/>
         <div v-if="loading">
           <v-progress-linear :indeterminate="true"></v-progress-linear>
         </div>
@@ -23,7 +23,7 @@
           <package-section v-bind:name="result.name" v-bind:version="result.version" v-bind:out_of_date="result.out_of_date" v-bind:description="result.description"
                            v-bind:maintainer="result.maintainer" v-bind:last_modified="result.last_modified" v-bind:votes="result.votes"
                            v-bind:popularity="result.popularity"></package-section>
-          <divider />
+          <divider/>
         </div>
       </v-card>
     </v-container>
@@ -69,6 +69,7 @@
 				loading: true,
 				search_query: this.query,
 				search_by: {text: get_by_name_from_value(this.by), value: this.by},
+				last_update: '',
 				results_count: 0,
 				results: [],
 				search_by_items: [{text: 'Name, Description', value: 'name-desc'}, {text: 'Name only', value: 'name'}, {text: 'Maintainer', value: 'maintainer'}]
@@ -95,6 +96,9 @@
 			},
 			search: function () {
 				this.$nextTick(function () {
+					if (this.last_update === this.search_query)
+						return;
+					this.last_update = this.search_query;
 					utils.search(this.search_query, this.search_by.value);
 					this.$nextTick(this.update_search);
 				});

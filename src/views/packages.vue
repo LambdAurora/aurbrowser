@@ -10,7 +10,7 @@
     </v-layout>
     <v-layout class="grey lighten-1 elevation-3" row wrap>
       <v-flex class="xs12 center">
-        <v-pagination v-model="page" v-on:input="update" :length="total_pages()" :total-visible="7"></v-pagination>
+        <v-pagination v-model="page" v-on:input="update" :length="total_pages()" :total-visible="5"></v-pagination>
       </v-flex>
     </v-layout>
     <v-container>
@@ -32,7 +32,7 @@
     </v-container>
     <v-layout class="grey lighten-1 elevation-3" row wrap>
       <v-flex class="xs12 center">
-        <v-pagination v-model="page" v-on:input="update" :length="total_pages()" :total-visible="7"></v-pagination>
+        <v-pagination v-model="page" v-on:input="update" :length="total_pages()" :total-visible="5"></v-pagination>
       </v-flex>
     </v-layout>
   </div>

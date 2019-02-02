@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    ["prismjs", {
+      "languages": ["bash"],
+      "plugins": ["line-numbers"],
+      "theme": "okaida",
+      "css": false
+    }]
+  ]
+}
