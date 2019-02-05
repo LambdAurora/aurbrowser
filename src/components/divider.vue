@@ -1,5 +1,5 @@
 <template>
-  <div class="divider"></div>
+  <div class="ls-divider"></div>
 </template>
 
 <script>

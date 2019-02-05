@@ -82,7 +82,7 @@
       <v-layout row wrap>
         <v-flex class="xs12 md4">
           <div class="icon-block center">
-            <h2 class="center orange--text text--accent-2"><img src="https://avatars3.githubusercontent.com/u/12587332?s=460&v=4" class="responsive-img circle"
+            <h2 class="center orange--text text--accent-2"><img src="https://avatars3.githubusercontent.com/u/12587332?s=460&v=4" class="responsive-img ls-circle"
                                                                 alt="LambdAurora's avatar"/></h2>
             <h5 class="center white--text"><a href="https://github.com/LambdAurora" target="_blank" class="orange-text text--accent-2">LambdAurora</a></h5>
 
@@ -92,7 +92,7 @@
 
         <v-flex class="xs12 md4">
           <div class="icon-block center">
-            <h2 class="center orange--text text--accent-2"><img src="https://avatars2.githubusercontent.com/u/4016501?s=460&v=4" class="responsive-img circle"
+            <h2 class="center orange--text text--accent-2"><img src="https://avatars2.githubusercontent.com/u/4016501?s=460&v=4" class="responsive-img ls-circle"
                                                                 alt="unixfox's avatar"/></h2>
             <h5 class="center white--text"><a href="https://github.com/unixfox" target="_blank" class="orange--text text--accent-2">unixfox</a></h5>
 

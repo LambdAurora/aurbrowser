@@ -1,14 +1,14 @@
 <template>
   <v-app dark class="lambdacolors_background">
     <v-toolbar app>
-      <v-toolbar-side-icon @click.stop="sidenav = !sidenav" class="hide-on-large-and-up">
+      <v-toolbar-side-icon @click.stop="sidenav = !sidenav" class="ls-hide-on-large-and-up">
         <v-icon>menu</v-icon>
       </v-toolbar-side-icon>
       <v-toolbar-title class="headline text-md-center">
         <a href="/">AUR Browser</a>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items class="hide-on-med-and-down">
+      <v-toolbar-items class="ls-hide-on-med-and-down">
         <v-btn flat href="/">
           <v-icon left>home</v-icon>
           Home

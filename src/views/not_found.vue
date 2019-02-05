@@ -9,7 +9,7 @@
       </div>
       <br/>
       <div class="row center">
-        <v-btn href="/" class="pulse" color="primary" style="z-index: 0">Main page</v-btn>
+        <a href="/" class="ls-btn ls-pulse" ls-variant="contained" style="z-index: 0;">Main page</a>
       </div>
     </div>
   </div>

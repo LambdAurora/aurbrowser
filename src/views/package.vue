@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card color="grey darken-1" elevation="3" :flat="$vuetify.breakpoint.xsOnly">
+    <v-card color="ls-card grey darken-1" elevation="3" :flat="$vuetify.breakpoint.xsOnly">
       <v-card-title primary-title>
         <div class="headline" v-if="result_details === 404">
           <span class="red--text">Package '{{ $route.params.pkg }}' was not found.</span>
@@ -21,15 +21,15 @@
         <ul class="collection">
           <li class="collection-item grey darken-2">Clone URL (Git): <a :href="get_clone_url()" class="orange-text text-accent-2">{{ get_clone_url() }}</a> (Read only)
           </li>
-          <li class="divider"></li>
+          <li class="ls-divider"></li>
           <template v-if="pkg.out_of_date">
             <li class="collection-item-alert grey darken-2">
               <v-alert :value="true" type="error">Flagged out-of-date ({{ utils.convert_timestamp(pkg.out_of_date) }})</v-alert>
             </li>
-            <li class="divider"></li>
+            <li class="ls-divider"></li>
           </template>
           <li class="collection-item grey darken-2">Description: {{ pkg.description }}</li>
-          <li class="divider"></li>
+          <li class="ls-divider"></li>
           <li class="collection-item grey darken-2">
             Link:
             <a :href="pkg.link.url">
@@ -37,7 +37,7 @@
               {{ pkg.link.url }}
             </a>
           </li>
-          <li class="divider"></li>
+          <li class="ls-divider"></li>
           <template v-if="pkg.keywords.length > 0">
             <li class="collection-item grey darken-2">
               Keywords:
@@ -45,21 +45,21 @@
                 <v-chip v-bind:key="keyword" color="primary" label class="flags-chip">{{ keyword }}</v-chip>
               </template>
             </li>
-            <li class="divider"></li>
+            <li class="ls-divider"></li>
           </template>
           <template v-if="pkg.license !== undefined">
             <li class="collection-item grey darken-2">Licenses: {{ pkg.license.join(',') }}</li>
-            <li class="divider"></li>
+            <li class="ls-divider"></li>
           </template>
           <template v-if="pkg.conflicts">
             <li class="collection-item grey darken-2">
               Conflicts:
               <span v-html="pkg.conflicts.map(conflict => `<a href='/package/${conflict}'>${conflict}</a>`).join(', ')"></span>
             </li>
-            <li class="divider"></li>
+            <li class="ls-divider"></li>
           </template>
           <li class="collection-item grey darken-2">Submitter: <a :href="'/account/' + pkg.submitter">{{ pkg.submitter }}</a></li>
-          <li class="divider"></li>
+          <li class="ls-divider"></li>
           <li class="collection-item grey darken-2">
             Maintainer:
             <span v-if="pkg.orphan || pkg.maintainer[0] === 'None'" class="red--text">None</span>
@@ -70,15 +70,15 @@
               </template>
             </template>
           </li>
-          <li class="divider"></li>
+          <li class="ls-divider"></li>
           <li class="collection-item grey darken-2">Last packager: <a :href="'/account/' + pkg.last_packager">{{ pkg.last_packager }}</a></li>
-          <li class="divider"></li>
+          <li class="ls-divider"></li>
           <li class="collection-item grey darken-2">Votes: {{ pkg.votes }}</li>
-          <li class="divider"></li>
+          <li class="ls-divider"></li>
           <li class="collection-item grey darken-2">Popularity: {{ pkg.popularity }}</li>
-          <li class="divider"></li>
+          <li class="ls-divider"></li>
           <li class="collection-item grey darken-2">First submitted: {{ pkg.first_submitted }}</li>
-          <li class="divider"></li>
+          <li class="ls-divider"></li>
           <li class="collection-item grey darken-2">Last updated: {{ pkg.last_modified }}</li>
         </ul>
 
@@ -107,11 +107,11 @@
         </v-layout>
       </v-card-text>
 
-      <v-card-actions v-if="pkg != null">
+      <div class="ls-card-actions" v-if="pkg != null">
         <v-btn flat color="primary" @click="pkgbuild_display = true">View PKGBUILD</v-btn>
         <v-btn flat color="primary" :href="`${CONSTANTS.AUR_BASE_URL}/cgit/aur.git/snapshot/${pkg.name}.tar.gz`">Download a snapshot</v-btn>
         <v-btn flat color="primary" :href="`https://wiki.archlinux.org/index.php/Special:Search?search=${pkg.name}`">Search wiki</v-btn>
-      </v-card-actions>
+      </div>
     </v-card>
 
     <v-dialog v-model="pkgbuild_display">
