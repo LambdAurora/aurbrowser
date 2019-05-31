@@ -24,7 +24,7 @@ function create_collection_item(doc)
 	return lambda_doc.build('li').classes('collection-item white-text grey darken-2').to_element();
 }
 
-const CORS_PROXY = "https://corsanywhere.gigalixirapp.com/";
+const CORS_PROXY = "https://cors.aurbrowser.tk/";
 
 function check_status(response)
 {
