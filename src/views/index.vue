@@ -47,7 +47,11 @@
       return {
         has_statistics_loaded: false,
         search_query: '',
-        statistics: ''
+        statistics: '',
+        page: {
+          title: 'Home',
+          description: 'Home page of AUR Browser.'
+        }
       }
     },
     methods: {
@@ -65,6 +69,21 @@
           return {name: stat.querySelector('td.stat-desc').innerText, data: stat.querySelectorAll('td')[1].innerText};
         });
       });
+    },
+    head: {
+      title: {
+        inner: 'AUR Browser',
+        separator: ' ',
+        complement: ' '
+      },
+      meta() {
+        return [
+          {name: 'description', c: this.page.description, id: 'desc'},
+          {p: 'og:title', c: `AUR Browser - ${this.page.title}`},
+          {p: 'og:url', c: window.location.href},
+          {p: 'og:description', c: this.page.description}
+        ]
+      }
     }
   }
 </script>

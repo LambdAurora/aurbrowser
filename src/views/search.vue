@@ -70,7 +70,10 @@
         last_update: '',
         results_count: 0,
         results: [],
-        search_by_items: [{text: 'Name, Description', value: 'name-desc'}, {text: 'Name only', value: 'name'}, {text: 'Maintainer', value: 'maintainer'}]
+        search_by_items: [{text: 'Name, Description', value: 'name-desc'}, {text: 'Name only', value: 'name'}, {text: 'Maintainer', value: 'maintainer'}],
+        page: {
+          title: 'Search'
+        }
       }
     },
     components: {
@@ -105,6 +108,23 @@
     },
     created() {
       this.update_search();
+    },
+    head: {
+      title() {
+        return {
+          inner: 'AUR Browser',
+          separator: '-',
+          complement: this.page.title + ': ' + this.search_query
+        };
+      },
+      meta() {
+        return [
+          {name: 'description', c: `Search results for query "${this.search_query}" by "${this.search_by.text}".`, id: 'desc'},
+          {p: 'og:title', c: `AUR Browser - ${this.page.title}: ${this.search_query}`},
+          {p: 'og:url', c: window.location.href},
+          {p: 'og:description', c: `Search results for query "${this.search_query}" by "${this.search_by.text}".`}
+        ]
+      }
     }
   }
 </script>

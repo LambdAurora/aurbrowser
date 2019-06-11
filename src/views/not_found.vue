@@ -17,7 +17,24 @@
 
 <script>
   export default {
-    name: "not_found.vue"
+    name: "not_found.vue",
+    head: {
+      title() {
+        return {
+          inner: 'AUR Browser',
+          separator: '-',
+          complement: '404'
+        };
+      },
+      meta() {
+        return [
+          {name: 'description', c: 'A page which doesn\'t exist.', id: 'desc'},
+          {p: 'og:title', c: 'AUR Browser - 404'},
+          {p: 'og:url', c: window.location.href},
+          {p: 'og:description', c: 'A page which doesn\'t exist.'}
+        ]
+      }
+    }
   }
 </script>
 

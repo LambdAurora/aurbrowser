@@ -46,7 +46,8 @@
             <h5 class="center white--text">JavaScript & PWA (WIP)</h5>
 
             <p class="light white--text">
-              <span class="brand-title">AUR Browser</span> is built with modern JavaScript technologies. <br/> WIP: It's also a Progressive Web App: you can add it to your home screen on your
+              <span class="brand-title">AUR Browser</span> is built with modern JavaScript technologies. <br/> WIP: It's also a Progressive Web App: you can add it to your home
+              screen on your
               mobile phone!
             </p>
           </div>
@@ -125,7 +126,28 @@
     name: "about",
     data() {
       return {
-        VERSION: CONSTANTS.VERSION
+        VERSION: CONSTANTS.VERSION,
+        page: {
+          title: 'About',
+          description: 'About AUR Browser.'
+        }
+      }
+    },
+    head: {
+      title() {
+        return {
+          inner: 'AUR Browser',
+          separator: '-',
+          complement: this.page.title
+        };
+      },
+      meta() {
+        return [
+          {name: 'description', c: this.page.description, id: 'desc'},
+          {p: 'og:title', c: `AUR Browser - ${this.page.title}`},
+          {p: 'og:url', c: window.location.href},
+          {p: 'og:description', c: this.page.description}
+        ]
       }
     }
   }

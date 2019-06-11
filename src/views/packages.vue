@@ -10,7 +10,7 @@
     </v-layout>
     <v-layout class="grey lighten-1 elevation-3" row wrap>
       <v-flex class="xs12 center">
-        <v-pagination v-model="page" v-on:input="update" :length="total_pages()" :total-visible="5"></v-pagination>
+        <v-pagination v-model="page_index" v-on:input="update" :length="total_pages()" :total-visible="5"></v-pagination>
       </v-flex>
     </v-layout>
     <v-container>
@@ -32,7 +32,7 @@
     </v-container>
     <v-layout class="grey lighten-1 elevation-3" row wrap>
       <v-flex class="xs12 center">
-        <v-pagination v-model="page" v-on:input="update" :length="total_pages()" :total-visible="5"></v-pagination>
+        <v-pagination v-model="page_index" v-on:input="update" :length="total_pages()" :total-visible="5"></v-pagination>
       </v-flex>
     </v-layout>
   </div>
@@ -56,13 +56,17 @@
     data() {
       return {
         loading: true,
-        page: this.index / 50 + 1,
+        page_index: this.index / 50 + 1,
         search_by: {text: 'Name, Description', value: 'name-desc'},
         search_query: '',
         search_by_items: [{text: 'Name, Description', value: 'name-desc'}, {text: 'Name only', value: 'name'}, {text: 'Maintainer', value: 'maintainer'}],
         total_packages: '...',
         results_count: 0,
-        results: []
+        results: [],
+        page: {
+          title: 'Packages',
+          description: 'List of every packages available in the AUR.'
+        }
       }
     },
     components: {
@@ -73,7 +77,7 @@
       update: function () {
         this.loading = true;
         this.$nextTick(function () {
-          let index = (this.page - 1) * 50;
+          let index = (this.page_index - 1) * 50;
           this.$router.push(`/packages?i=${index}`);
           aur.get_packages(index, (results, count) => {
             this.total_packages = count;
@@ -102,6 +106,23 @@
         this.results = results;
         this.loading = false;
       });
+    },
+    head: {
+      title() {
+        return {
+          inner: 'AUR Browser',
+          separator: '-',
+          complement: this.page.title
+        };
+      },
+      meta() {
+        return [
+          {name: 'description', c: this.page.description, id: 'desc'},
+          {p: 'og:title', c: `AUR Browser - ${this.page.title}`},
+          {p: 'og:url', c: window.location.href},
+          {p: 'og:description', c: this.page.description}
+        ]
+      }
     }
   }
 </script>

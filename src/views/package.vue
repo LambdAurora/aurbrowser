@@ -203,6 +203,23 @@
       }, err_status => {
         this.result_details = err_status;
       });
+    },
+    head: {
+      title() {
+        return {
+          inner: 'AUR Browser',
+          separator: '-',
+          complement: this.$route.params.pkg
+        };
+      },
+      meta() {
+        return [
+          {name: 'description', c: `See package ${this.$route.params.pkg} on AUR Browser.`, id: 'desc'},
+          {p: 'og:title', c: `AUR Browser - ${this.$route.params.pkg}`},
+          {p: 'og:url', c: window.location.href},
+          {p: 'og:description', c: `See package ${this.$route.params.pkg} on AUR Browser.`}
+        ]
+      }
     }
   }
 </script>

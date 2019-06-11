@@ -10,6 +10,7 @@
 import "@babel/polyfill";
 import Vue from 'vue';
 import './plugins/vuetify';
+import VueHead from 'vue-head';
 
 import 'vuetify/dist/vuetify.min.css'
 import 'prismjs/themes/prism-okaidia.css'
@@ -23,6 +24,7 @@ import App from './app.vue';
 import router from './router';
 import utils from './utils';
 
+Vue.use(VueHead);
 utils.init(router);
 
 new Vue({
