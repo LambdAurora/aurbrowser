@@ -16,9 +16,9 @@
 </template>
 
 <script>
-	export default {
-		name: "not_found.vue"
-	}
+  export default {
+    name: "not_found.vue"
+  }
 </script>
 
 <style scoped>

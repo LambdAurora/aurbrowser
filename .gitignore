@@ -1,7 +1,7 @@
 #
 # AperLambda ignore file
 #
-# v0.7
+# v0.8
 
 # JetBrains
 .idea/
@@ -32,7 +32,6 @@ CMakeFiles/
 .gradle/
 ## Node.JS
 node_modules/
-package-lock.json
 
 # Editors
 ## VSCode

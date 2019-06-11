@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018 LambdAurora <aurora42lambda@gmail.com>
+ * Copyright © 2019 LambdAurora <aurora42lambda@gmail.com>
  *
  * This file is part of aurbrowser.
  *
@@ -13,5 +13,5 @@ export default {
 	VERSION: '1.2.0',
 	AUR_BASE_URL: AUR_BASE_URL,
 	AUR_RPC_URL: `${AUR_BASE_URL}/rpc/?v=5`,
-	CORS_PROXY: "https://corsanywhere.gigalixirapp.com/"
+	CORS_PROXY: "https://cors.aurbrowser.tk/"
 };

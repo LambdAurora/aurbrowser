@@ -7,3 +7,11 @@
 [![GitHub issues](https://img.shields.io/github/issues/LambdAurora/aurbrowser.svg?style=flat-square)](https://github.com/LambdAurora/aurbrowser/issues/)
 
 A web AUR browser.
+
+## How to use?
+
+Just simply go to [the aurbrowser website: https://aurbrowser.tk](https://aurbrowser.tk) and explore!
+
+## Development builds
+
+You can see the development builds: [here](https://dev--aurbrowser.netlify.com/)!

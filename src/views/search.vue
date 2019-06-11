@@ -31,84 +31,81 @@
 </template>
 
 <script>
-	import app from '../app';
-	import aur from '../aur';
-	import utils from '../utils';
+  import app from '../app';
+  import aur from '../aur';
+  import utils from '../utils';
 
-	import Divider from '../components/divider.vue';
-	import PackageSection from '../components/package_section.vue';
+  import Divider from '../components/divider.vue';
+  import PackageSection from '../components/package_section.vue';
 
-	function get_by_name_from_value(value)
-	{
-		switch (value) {
-			case 'name-desc':
-				return 'Name, Description';
-			case 'name':
-				return 'Name';
-			case 'maintainer':
-				return 'Maintainer';
-			default:
-				return undefined;
-		}
-	}
+  function get_by_name_from_value(value) {
+    switch (value) {
+      case 'name-desc':
+        return 'Name, Description';
+      case 'name':
+        return 'Name';
+      case 'maintainer':
+        return 'Maintainer';
+      default:
+        return undefined;
+    }
+  }
 
-	export default {
-		name: "search",
-		props: {
-			query: {
-				type: String,
-			},
-			by: {
-				type: String,
-				default: 'name-desc'
-			}
-		},
-		data()
-		{
-			return {
-				loading: true,
-				search_query: this.query,
-				search_by: {text: get_by_name_from_value(this.by), value: this.by},
-				last_update: '',
-				results_count: 0,
-				results: [],
-				search_by_items: [{text: 'Name, Description', value: 'name-desc'}, {text: 'Name only', value: 'name'}, {text: 'Maintainer', value: 'maintainer'}]
-			}
-		},
-		components: {
-			Divider,
-			PackageSection
-		},
-		methods: {
-			update_search: function () {
-				this.loading = true;
-				if (!app.is_search_valid(this.query, this.by)) {
-					this.loading = false;
-					this.results_count = 0;
-					this.results = [];
-					return;
-				}
-				aur.search(this.query, this.by, results => {
-					this.results_count = results.length;
-					this.results = results;
-					this.loading = false;
-				});
-			},
-			search: function () {
-				this.$nextTick(function () {
-					if (this.last_update === this.search_query)
-						return;
-					this.last_update = this.search_query;
-					utils.search(this.search_query, this.search_by.value);
-					this.$nextTick(this.update_search);
-				});
-			}
-		},
-		created()
-		{
-			this.update_search();
-		}
-	}
+  export default {
+    name: "search",
+    props: {
+      query: {
+        type: String,
+      },
+      by: {
+        type: String,
+        default: 'name-desc'
+      }
+    },
+    data() {
+      return {
+        loading: true,
+        search_query: this.query,
+        search_by: {text: get_by_name_from_value(this.by), value: this.by},
+        last_update: '',
+        results_count: 0,
+        results: [],
+        search_by_items: [{text: 'Name, Description', value: 'name-desc'}, {text: 'Name only', value: 'name'}, {text: 'Maintainer', value: 'maintainer'}]
+      }
+    },
+    components: {
+      Divider,
+      PackageSection
+    },
+    methods: {
+      update_search: function () {
+        this.loading = true;
+        if (!app.is_search_valid(this.query, this.by)) {
+          this.loading = false;
+          this.results_count = 0;
+          this.results = [];
+          return;
+        }
+        aur.search(this.query, this.by, results => {
+          this.results_count = results.length;
+          this.results = results;
+          this.loading = false;
+        });
+      },
+      search: function () {
+        this.$nextTick(function () {
+          if (this.last_update === this.search_query)
+            return;
+          this.last_update = this.search_query;
+          utils.search(this.search_query, this.search_by.value);
+          this.$nextTick(this.update_search);
+        });
+      }
+    },
+    created() {
+      this.update_search();
+    }
+  }
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018 LambdAurora <aurora42lambda@gmail.com>
+ * Copyright © 2019 LambdAurora <aurora42lambda@gmail.com>
  *
  * This file is part of aurbrowser.
  *
@@ -20,76 +20,76 @@ import NotFound from './views/not_found.vue';
 Vue.use(Router);
 
 export const routes = [
-	{
-		path: '*',
-		component: NotFound,
-		meta: {
-			link: false
-		}
-	},
-	{
-		path: '/',
-		redirect: '/home'
-	},
-	{
-		path: '/home',
-		name: 'Home',
-		component: Index,
-		meta: {
-			icon: 'home',
-			link: true
-		}
-	},
-	{
-		path: '/about',
-		name: 'About',
-		component: About,
-		meta: {
-			icon: 'info',
-			link: true
-		}
-	},
-	{
-		path: '/search',
-		name: 'Search',
-		component: Search,
-		props: (route) => ({ query: route.query.q, by: route.query.by }),
-		meta: {
-			icon: 'search',
-			link: true
-		}
-	},
-	{
-		path: '/packages',
-		name: 'Packages',
-		component: Packages,
-		props: (route) => ({ index: Number(route.query.i) }),
-		meta: {
-			icon: 'apps',
-			link: true
-		}
-	},
-	{
-		path: '/packages/:i',
-		name: 'Packages_indexed',
-		component: Packages,
-		meta: {
-			icon: 'apps',
-			link: false
-		}
-	},
-	{
-		path: '/package/:pkg',
-		name: 'package',
-		component: Package,
-		meta: {
-			icon: 'apps',
-			link: false
-		}
-	}
+  {
+    path: '*',
+    component: NotFound,
+    meta: {
+      link: false
+    }
+  },
+  {
+    path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Index,
+    meta: {
+      icon: 'home',
+      link: true
+    }
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
+    meta: {
+      icon: 'info',
+      link: true
+    }
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search,
+    props: (route) => ({query: route.query.q, by: route.query.by}),
+    meta: {
+      icon: 'search',
+      link: true
+    }
+  },
+  {
+    path: '/packages',
+    name: 'Packages',
+    component: Packages,
+    props: (route) => ({index: Number(route.query.i)}),
+    meta: {
+      icon: 'apps',
+      link: true
+    }
+  },
+  {
+    path: '/packages/:i',
+    name: 'Packages_indexed',
+    component: Packages,
+    meta: {
+      icon: 'apps',
+      link: false
+    }
+  },
+  {
+    path: '/package/:pkg',
+    name: 'package',
+    component: Package,
+    meta: {
+      icon: 'apps',
+      link: false
+    }
+  }
 ];
 
 export default new Router({
-	mode: 'history',
-	routes
+  mode: 'history',
+  routes
 });

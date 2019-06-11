@@ -6,7 +6,7 @@
         <br/>
         <h1 class="center blue-grey--text text--lighten-4">AUR Browser</h1>
         <div class="row center">
-          <h5 class="xs12 light">A web AUR Browser. (Version {{ VERSION }})</h5>
+          <h5 class="xs12 light">A web AUR Browser.</h5>
           <h6 class="xs12 light">
             The original <a href="https://aur.archlinux.org/" class="orange-text text--accent-2">aurweb</a> isn't very beautiful, why not use one more attractive to the eyes?
           </h6>
@@ -43,10 +43,10 @@
         <v-flex class="xs12 md4">
           <div class="icon-block center">
             <h2 class="center orange--text text--accent-2"><i class="fab fa-js"></i></h2>
-            <h5 class="center white--text">JavaScript & PWA</h5>
+            <h5 class="center white--text">JavaScript & PWA (WIP)</h5>
 
             <p class="light white--text">
-              <span class="brand-title">AUR Browser</span> is built with modern JavaScript technologies. It's also a Progressive Web App: you can add it to your home screen on your
+              <span class="brand-title">AUR Browser</span> is built with modern JavaScript technologies. <br/> WIP: It's also a Progressive Web App: you can add it to your home screen on your
               mobile phone!
             </p>
           </div>
@@ -103,7 +103,7 @@
         </v-flex>
 
         <v-flex class="xs12 md4">
-          <div class="icon-block">
+          <div class="icon-bloc center">
             <h2 class="center orange--text text--accent-2"><i class="fas fa-hands-helping"></i></h2>
             <h5 class="center white--text">Contribute</h5>
 
@@ -119,17 +119,16 @@
 </template>
 
 <script>
-	import CONSTANTS from "../constants";
+  import CONSTANTS from "../constants";
 
-	export default {
-		name: "about",
-		data()
-		{
-			return {
-				VERSION: CONSTANTS.VERSION
-			}
-		}
-	}
+  export default {
+    name: "about",
+    data() {
+      return {
+        VERSION: CONSTANTS.VERSION
+      }
+    }
+  }
 </script>
 
 <style scoped>

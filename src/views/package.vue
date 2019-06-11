@@ -114,10 +114,46 @@
       </div>
     </v-card>
 
+    <v-layout row>
+      <v-flex style="margin-top: 1em;" v-if="pkg != null && pkg.comments.pinned.length !== 0">
+        <v-card class="grey darken-1">
+          <v-card-title primary-title class="grey darken-2" style="padding: 12px;">
+            <h5 style="margin: 0;"><i class="fas fa-thumbtack"></i> Pinned comments</h5>
+          </v-card-title>
+          <div v-for="(comment, index) in pkg.comments.pinned" v-bind:key="index">
+            <div class="section" style="display: flex; flex-wrap: wrap; flex-direction: column; margin: 0 0.25em 0 0.25em;" :key="comment.author + comment.header">
+              <h6><a :href="'/account/' + comment.author">{{ comment.author }}</a> {{ comment.header }}</h6>
+              <p style="margin: 0.25em 0 0.25em 0.25em;" v-html="comment.content"></p>
+            </div>
+            <divider :key="comment.header" v-if="index !== pkg.comments.pinned.length - 1"/>
+          </div>
+        </v-card>
+      </v-flex>
+    </v-layout>
+
+    <v-layout row>
+      <v-flex style="margin-top: 1em;" v-if="pkg != null && pkg.comments.comments.length !== 0">
+        <v-card class="grey darken-1">
+          <v-card-title primary-title class="grey darken-2" style="padding: 12px;">
+            <h5 style="margin: 0;"><i class="fas fa-comment"></i> Comments</h5>
+          </v-card-title>
+          <div v-for="(comment, index) in pkg.comments.comments" v-bind:key="index">
+            <div class="section" style="display: flex; flex-wrap: wrap; flex-direction: column; margin: 0 0.25em 0 0.25em;" :key="comment.author + comment.header">
+              <h6><a :href="'/account/' + comment.author">{{ comment.author }}</a> {{ comment.header }}</h6>
+              <p style="margin: 0.25em 0 0.25em 0.25em;" v-html="comment.content"></p>
+            </div>
+            <divider :key="comment.header" v-if="index !== pkg.comments.comments.length - 1"/>
+          </div>
+        </v-card>
+      </v-flex>
+    </v-layout>
+
     <v-dialog v-model="pkgbuild_display">
       <v-card>
         <v-card-title v-if="pkgbuild" class="headline">PKGBUILD of {{ pkg.name }}:</v-card-title>
-        <v-card-text><pre v-if="pkgbuild" class="line-numbers"><code class="language-bash grey darken-4" v-html="pkgbuild_content"></code></pre></v-card-text>
+        <v-card-text>
+          <pre v-if="pkgbuild" class="line-numbers"><code class="language-bash grey darken-4" v-html="pkgbuild_content"></code></pre>
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn flat @click="pkgbuild_display = false">Close</v-btn>
@@ -128,44 +164,47 @@
 </template>
 
 <script>
-	import CONSTANTS from "../constants";
-	import aur from '../aur';
-	import utils from '../utils';
-	import Prism from 'prismjs';
+  import CONSTANTS from "../constants";
+  import aur from '../aur';
+  import utils from '../utils';
+  import Prism from 'prismjs';
 
-	export default {
-		name: 'package',
-		data()
-		{
-			return {
-				CONSTANTS: CONSTANTS,
-				utils: utils,
-				pkgbuild: false,
-				pkgbuild_display: false,
-				pkgbuild_content: '',
-				pkg: null,
-				result_details: null
-			}
-		},
-		methods: {
-			get_clone_url: function () {
-				return CONSTANTS.AUR_BASE_URL + '/' + this.$route.params.pkg + '.git';
-			}
-		},
-		created()
-		{
-			aur.get_package(this.$route.params.pkg, result => {
-				this.pkg = result;
-				utils.fetch_raw(aur.build_url('package_pkgbuild', {package: result.name}), true, pkgbuild_doc => {
-					console.log(pkgbuild_doc);
-					this.pkgbuild = true;
-					this.pkgbuild_content = Prism.highlight(pkgbuild_doc.replaceAll('<', '\u003C').replaceAll('>', '\u003E'), Prism.languages.bash);
-				});
-			}, err_status => {
-				this.result_details = err_status;
-			});
-		}
-	}
+  import Divider from '../components/divider.vue';
+
+  export default {
+    name: 'package',
+    data() {
+      return {
+        CONSTANTS: CONSTANTS,
+        utils: utils,
+        pkgbuild: false,
+        pkgbuild_display: false,
+        pkgbuild_content: '',
+        pkg: null,
+        result_details: null
+      }
+    },
+    components: {
+      Divider,
+    },
+    methods: {
+      get_clone_url: function () {
+        return CONSTANTS.AUR_BASE_URL + '/' + this.$route.params.pkg + '.git';
+      }
+    },
+    created() {
+      aur.get_package(this.$route.params.pkg, result => {
+        this.pkg = result;
+        console.log(this.pkg.comments);
+        utils.fetch_raw(aur.build_url('package_pkgbuild', {package: result.name}), true, pkgbuild_doc => {
+          this.pkgbuild = true;
+          this.pkgbuild_content = Prism.highlight(pkgbuild_doc.replaceAll('<', '\u003C').replaceAll('>', '\u003E'), Prism.languages.bash);
+        });
+      }, err_status => {
+        this.result_details = err_status;
+      });
+    }
+  }
 </script>
 
 <style scoped>

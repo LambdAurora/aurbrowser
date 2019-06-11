@@ -84,24 +84,22 @@
 </template>
 
 <script>
-	import app from './app';
+  import app from './app';
 
-	export default {
-		name: 'App',
-		data()
-		{
-			return {
-				VERSION: app.VERSION,
-				sidenav: false
-			}
-		},
-		computed: {
-			routes()
-			{
-				return this.$router.options.routes.filter(({meta: {link} = {}}) => link);
-			}
-		}
-	}
+  export default {
+    name: 'App',
+    data() {
+      return {
+        VERSION: app.VERSION,
+        sidenav: false
+      }
+    },
+    computed: {
+      routes() {
+        return this.$router.options.routes.filter(({meta: {link} = {}}) => link);
+      }
+    }
+  }
 </script>
 
 <style scoped>

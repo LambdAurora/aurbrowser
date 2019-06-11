@@ -38,34 +38,35 @@
 </template>
 
 <script>
-	import aur from '../aur';
-	import utils from '../utils';
+  import aur from '../aur';
+  import utils from '../utils';
 
-	export default {
-		name: "index",
-		data: () => {
-			return {
-				has_statistics_loaded: false,
-				search_query: '',
-				statistics: ''
-			}
-		},
-		methods: {
-			search: function () {
-				this.$nextTick(function () {
-					utils.search(this.search_query, 'name-desc');
-					this.$nextTick(this.update_search);
-				});
-			}
-		},
-		created()
-		{
-			aur.get_statistics(stats => {
-				this.has_statistics_loaded = true;
-				this.statistics = utils.to_array(stats.querySelectorAll('tr')).map(stat => { return {name: stat.querySelector('td.stat-desc').innerText, data: stat.querySelectorAll('td')[1].innerText}; });
-			});
-		}
-	}
+  export default {
+    name: "index",
+    data: () => {
+      return {
+        has_statistics_loaded: false,
+        search_query: '',
+        statistics: ''
+      }
+    },
+    methods: {
+      search: function () {
+        this.$nextTick(function () {
+          utils.search(this.search_query, 'name-desc');
+          this.$nextTick(this.update_search);
+        });
+      }
+    },
+    created() {
+      aur.get_statistics(stats => {
+        this.has_statistics_loaded = true;
+        this.statistics = utils.to_array(stats.querySelectorAll('tr')).map(stat => {
+          return {name: stat.querySelector('td.stat-desc').innerText, data: stat.querySelectorAll('td')[1].innerText};
+        });
+      });
+    }
+  }
 </script>
 
 <style scoped>
