@@ -5,6 +5,7 @@
 ![JS and HTML/CSS](https://img.shields.io/badge/framework-Vue-brightgreen.svg?style=flat-square)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/LambdAurora/aurbrowser/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/LambdAurora/aurbrowser.svg?style=flat-square)](https://github.com/LambdAurora/aurbrowser/issues/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ccc11724-d7e6-44b3-94db-42e620a40cfc/deploy-status)](https://app.netlify.com/sites/aurbrowser/deploys)
 
 A web AUR browser.
 
