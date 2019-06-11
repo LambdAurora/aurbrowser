@@ -6,7 +6,7 @@
           <v-combobox v-model="search_by" v-on:input="search" type="button" :items="search_by_items" label="Search by:" hide-details light></v-combobox>
         </v-flex>
         <v-flex class="xs9">
-          <v-text-field v-model="search_query" v-on:input="search" hide-details prepend-icon="search" label="Search" single-line light></v-text-field>
+          <v-text-field v-model="search_query" v-on:change="search" hide-details prepend-icon="search" label="Search" single-line light></v-text-field>
         </v-flex>
       </v-layout>
     </div>
@@ -71,6 +71,11 @@
         results_count: 0,
         results: [],
         search_by_items: [{text: 'Name, Description', value: 'name-desc'}, {text: 'Name only', value: 'name'}, {text: 'Maintainer', value: 'maintainer'}],
+        autocomplete: {
+          is_loading: false,
+          model: null,
+          search: null
+        },
         page: {
           title: 'Search'
         }
