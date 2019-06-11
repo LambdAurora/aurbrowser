@@ -33,7 +33,7 @@
           <li class="collection-item grey darken-2">
             Link:
             <a :href="pkg.link.url">
-              <span v-if="pkg.link.icon != null" :class="'fab fa-' + pkg.link.icon + ' aperlambda-foreground-' + pkg.link.foreground"></span>
+              <span v-if="pkg.link.icon != null" :class="'fab fa-' + pkg.link.icon" :style="'color: ' + pkg.link.foreground"></span>
               {{ pkg.link.url }}
             </a>
           </li>

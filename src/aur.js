@@ -73,7 +73,7 @@ function get_package_link(url) {
   let foreground = null;
   if (url.startsWith('https://github.com/') || url.startsWith('https://www.github.com/')) {
     icon = 'github';
-    foreground = 'github';
+    foreground = 'rgb(0, 0, 0)';
   }
   return {
     icon: icon,

@@ -1,9 +1,9 @@
 <template>
-  <v-app dark class="lambdacolors_background">
+  <v-app dark style="background: #262A32 !important;">
     <v-toolbar app>
       <v-toolbar-side-icon @click.stop="sidenav = !sidenav" class="ls-hide-on-large-and-up"></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-md-center">
-        <router-link to="home">AUR Browser</router-link>
+        <router-link to="/home">AUR Browser</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="ls-hide-on-med-and-down">
@@ -53,13 +53,13 @@
     </v-content>
 
     <v-footer height="auto">
-      <v-card flat tile class="flex lambdacolors_appbar">
+      <v-card flat tile class="flex" style="background: #212329 !important;">
         <v-card-title>
           <v-container>
             <h5 class="subheading">Made with <i class="fas fa-heart red--text text--darken-1"></i> on <a href="https://github.com/LambdAurora/aurbrowser">GitHub</a></h5>
           </v-container>
         </v-card-title>
-        <v-card-actions class="lambdacolors_copyright_notice">
+        <v-card-actions>
           v{{ VERSION }}
           <v-spacer></v-spacer>
           <a href="https://github.com/LambdAurora/aurbrowser/blob/master/LICENSE" class="grey--text text--darken-1 right">MIT License</a>
