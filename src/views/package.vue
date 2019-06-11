@@ -116,12 +116,12 @@
 
     <v-layout row>
       <v-flex style="margin-top: 1em;" v-if="pkg != null && pkg.comments.pinned.length !== 0">
-        <v-card class="grey darken-1">
+        <v-card id="pinned_comments" class="grey darken-1">
           <v-card-title primary-title class="grey darken-2" style="padding: 12px;">
             <h5 style="margin: 0;"><i class="fas fa-thumbtack"></i> Pinned comments</h5>
           </v-card-title>
           <div v-for="(comment, index) in pkg.comments.pinned" v-bind:key="index">
-            <div class="section" style="display: flex; flex-wrap: wrap; flex-direction: column; margin: 0 0.25em 0 0.25em;" :key="comment.author + comment.header">
+            <div :id="comment.author + '_' + index" class="section" style="display: flex; flex-wrap: wrap; flex-direction: column; margin: 0 0.25em 0 0.25em;" :key="comment.author + comment.header">
               <h6><a :href="'/account/' + comment.author">{{ comment.author }}</a> {{ comment.header }}</h6>
               <p style="margin: 0.25em 0 0.25em 0.25em;" v-html="comment.content"></p>
             </div>
@@ -133,7 +133,7 @@
 
     <v-layout row>
       <v-flex style="margin-top: 1em;" v-if="pkg != null && pkg.comments.comments.length !== 0">
-        <v-card class="grey darken-1">
+        <v-card id="comments" class="grey darken-1">
           <v-card-title primary-title class="grey darken-2" style="padding: 12px;">
             <h5 style="margin: 0;"><i class="fas fa-comment"></i> Comments</h5>
           </v-card-title>
