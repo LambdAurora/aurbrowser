@@ -1,26 +1,24 @@
 <template>
   <v-app dark class="lambdacolors_background">
     <v-toolbar app>
-      <v-toolbar-side-icon @click.stop="sidenav = !sidenav" class="ls-hide-on-large-and-up">
-        <v-icon>menu</v-icon>
-      </v-toolbar-side-icon>
+      <v-toolbar-side-icon @click.stop="sidenav = !sidenav" class="ls-hide-on-large-and-up"></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-md-center">
-        <a href="/">AUR Browser</a>
+        <router-link to="home">AUR Browser</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="ls-hide-on-med-and-down">
-        <v-btn flat href="/">
+        <v-btn flat to="/home">
           <v-icon left>home</v-icon>
           Home
         </v-btn>
-        <v-btn icon href="/search">
+        <v-btn icon to="/search">
           <v-icon>search</v-icon>
         </v-btn>
-        <v-btn flat href="/about">
+        <v-btn flat to="/about">
           <v-icon left>info</v-icon>
           About
         </v-btn>
-        <v-btn flat href="/packages">
+        <v-btn flat to="/packages">
           <v-icon left>apps</v-icon>
           Packages
         </v-btn>
@@ -58,7 +56,7 @@
       <v-card flat tile class="flex lambdacolors_appbar">
         <v-card-title>
           <v-container>
-            <h5 class="subheading">Made with <i class="fas fa-heart red--text text--darken-1"></i> on <a href="https://github.com/LambdAurora/aurbrowser.git/">GitHub</a></h5>
+            <h5 class="subheading">Made with <i class="fas fa-heart red--text text--darken-1"></i> on <a href="https://github.com/LambdAurora/aurbrowser">GitHub</a></h5>
           </v-container>
         </v-card-title>
         <v-card-actions class="lambdacolors_copyright_notice">
@@ -69,7 +67,7 @@
       </v-card>
     </v-footer>
 
-    <v-navigation-drawer app width="250" absolute temporary v-model="sidenav" v-if="$vuetify.breakpoint.mdAndDown">
+    <v-navigation-drawer app width="250" temporary v-model="sidenav" v-if="$vuetify.breakpoint.mdAndDown">
       <v-list>
         <v-subheader>AUR Browser</v-subheader>
         <v-list-tile v-for="(route, i) in routes" :key="i" :to="route">

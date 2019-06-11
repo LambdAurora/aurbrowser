@@ -1,13 +1,13 @@
 <template>
   <div class="section white--text">
-    <h5><a :href="'/package/' +  name">{{ name }}</a> v<span v-bind:class="{ 'red--text': out_of_date }">{{ version }}</span></h5>
+    <h5><router-link :to="'package/' +  name">{{ name }}</router-link> v<span v-bind:class="{ 'red--text': out_of_date }">{{ version }}</span></h5>
     <p style="padding-left: 5px; padding-right: 5px;">{{ description }}</p>
     <v-layout row wrap style="margin-bottom: auto;">
       <v-flex v-if="last_modified" class="xs6">
-        From: <a :href="'/account/' + maintainer">{{ maintainer }}</a> • {{ last_modified }}
+        From: <router-link :to="'account/' + maintainer">{{ maintainer }}</router-link> • {{ last_modified }}
       </v-flex>
       <v-flex v-else class="xs6">
-        From: <a :href="'/account/' + maintainer">{{ maintainer }}</a>
+        From: <router-link :to="'/account/' + maintainer">{{ maintainer }}</router-link>
       </v-flex>
       <v-flex class="xs6" style="padding-right: .75rem;">
         <span class="right">Votes: {{ votes }} • Popularity: {{ popularity }}</span>
