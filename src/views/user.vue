@@ -24,7 +24,7 @@
   import Divider from '../components/divider.vue';
 
   export default {
-    name: 'account',
+    name: 'user',
     data() {
       return {
         CONSTANTS: CONSTANTS,

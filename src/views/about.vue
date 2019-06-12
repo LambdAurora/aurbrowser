@@ -99,7 +99,7 @@
 
             <a href="https://camo.githubusercontent.com/2c453bd2d87adb3c8864b93cd57731eb0989a6e8/68747470733a2f2f692e726564642e69742f31366269636c747630383832312e706e67"
                class="light white--text">Made a pull request.</a>
-            <p class="light white--text">More seriously he helped me to get the domain name because I am a bit dumb.</p>
+            <p class="light white--text">More seriously he helped me a lot, he helped to get the domain name, he secured the website with headers, etc...</p>
           </div>
         </v-flex>
 

@@ -58,20 +58,20 @@
             </li>
             <li class="ls-divider"></li>
           </template>
-          <li class="collection-item grey darken-2">Submitter: <a :href="'/account/' + pkg.submitter">{{ pkg.submitter }}</a></li>
+          <li class="collection-item grey darken-2">Submitter: <router-link :to="'/user/' + pkg.submitter">{{ pkg.submitter }}</router-link></li>
           <li class="ls-divider"></li>
           <li class="collection-item grey darken-2">
             Maintainer:
             <span v-if="pkg.orphan || pkg.maintainer[0] === 'None'" class="red--text">None</span>
             <template v-else>
-              <a v-if="pkg.maintainer.length === 1" :href="'/account/' + pkg.maintainer[0]">{{ pkg.maintainer[0] }}</a>
-              <template v-else v-for="(person, index) in pkg.maintainer"><span v-if="index !== 0" v-bind:key="index">, </span><a :href="'/account/' + person" v-bind:key="person">{{
-                person }}</a>
+              <router-link v-if="pkg.maintainer.length === 1" :to="'/user/' + pkg.maintainer[0]">{{ pkg.maintainer[0] }}</router-link>
+              <template v-else v-for="(person, index) in pkg.maintainer">
+                <span v-if="index !== 0" v-bind:key="index">, </span><router-link :to="'/user/' + person" v-bind:key="person">{{ person }}</router-link>
               </template>
             </template>
           </li>
           <li class="ls-divider"></li>
-          <li class="collection-item grey darken-2">Last packager: <a :href="'/account/' + pkg.last_packager">{{ pkg.last_packager }}</a></li>
+          <li class="collection-item grey darken-2">Last packager: <router-link :to="'/user/' + pkg.last_packager">{{ pkg.last_packager }}</router-link></li>
           <li class="ls-divider"></li>
           <li class="collection-item grey darken-2">Votes: {{ pkg.votes }}</li>
           <li class="ls-divider"></li>
@@ -122,7 +122,7 @@
           </v-card-title>
           <div v-for="(comment, index) in pkg.comments.pinned" v-bind:key="index">
             <div :id="comment.author + '_' + index" class="section" style="display: flex; flex-wrap: wrap; flex-direction: column; margin: 0 0.25em 0 0.25em;" :key="comment.author + comment.header">
-              <h6><a :href="'/account/' + comment.author">{{ comment.author }}</a> {{ comment.header }}</h6>
+              <h6><router-link :to="'/user/' + comment.author">{{ comment.author }}</router-link> {{ comment.header }}</h6>
               <p style="margin: 0.25em 0 0.25em 0.25em;" v-html="comment.content"></p>
             </div>
             <divider :key="comment.header" v-if="index !== pkg.comments.pinned.length - 1"/>
@@ -139,7 +139,7 @@
           </v-card-title>
           <div v-for="(comment, index) in pkg.comments.comments" v-bind:key="index">
             <div class="section" style="display: flex; flex-wrap: wrap; flex-direction: column; margin: 0 0.25em 0 0.25em;" :key="comment.author + comment.header">
-              <h6><a :href="'/account/' + comment.author">{{ comment.author }}</a> {{ comment.header }}</h6>
+              <h6><router-link :to="'/user/' + comment.author">{{ comment.author }}</router-link> {{ comment.header }}</h6>
               <p style="margin: 0.25em 0 0.25em 0.25em;" v-html="comment.content"></p>
             </div>
             <divider :key="comment.header" v-if="index !== pkg.comments.comments.length - 1"/>

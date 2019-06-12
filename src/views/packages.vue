@@ -5,7 +5,19 @@
         <v-combobox v-model="search_by" v-on:input="search" type="button" :items="search_by_items" label="Search by:" hide-details light></v-combobox>
       </v-flex>
       <v-flex class="xs9">
-        <v-text-field v-model="search_query" v-on:change="search" hide-details prepend-icon="search" label="Search" single-line light></v-text-field>
+        <v-autocomplete id="search"
+                        v-model="search_query"
+                        :loading="is_loading"
+                        :items="search_entries"
+                        :search-input.sync="search_content"
+                        @change="search"
+                        hide-details
+                        prepend-icon="search"
+                        label="Search"
+                        single-line
+                        light
+                        dense>
+        </v-autocomplete>
       </v-flex>
     </v-layout>
     <v-layout class="grey lighten-1 elevation-3" row wrap>
@@ -53,12 +65,19 @@
         default: 0
       }
     },
+    components: {
+      Divider,
+      PackageSection
+    },
     data() {
       return {
         loading: true,
         page_index: this.index / 50 + 1,
         search_by: {text: 'Name, Description', value: 'name-desc'},
         search_query: '',
+        search_content: '',
+        search_entries: [],
+        is_loading: false,
         search_by_items: [{text: 'Name, Description', value: 'name-desc'}, {text: 'Name only', value: 'name'}, {text: 'Maintainer', value: 'maintainer'}],
         total_packages: '...',
         results_count: 0,
@@ -69,9 +88,17 @@
         }
       }
     },
-    components: {
-      Divider,
-      PackageSection
+    watch: {
+      search_content(val) {
+        if (val == null) return;
+        this.is_loading = true;
+        aur.search(val, this.search_by.value, results => {
+          this.search_entries = results.map(r => r.name).sort();
+          if (val != null && !this.search_entries.includes(val))
+            this.search_entries.unshift(val);
+          this.is_loading = false;
+        });
+      }
     },
     methods: {
       update: function () {
@@ -94,7 +121,6 @@
       search: function () {
         this.$nextTick(function () {
           utils.search(this.search_query, this.search_by.value);
-          this.$nextTick(this.update_search);
         });
       }
     },

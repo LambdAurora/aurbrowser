@@ -4,10 +4,10 @@
     <p style="padding-left: 5px; padding-right: 5px;">{{ description }}</p>
     <v-layout row wrap style="margin-bottom: auto;">
       <v-flex v-if="last_modified" class="xs6">
-        From: <router-link :to="'account/' + maintainer">{{ maintainer }}</router-link> • {{ last_modified }}
+        From: <router-link :to="'/user/' + maintainer">{{ maintainer }}</router-link> • {{ last_modified }}
       </v-flex>
       <v-flex v-else class="xs6">
-        From: <router-link :to="'/account/' + maintainer">{{ maintainer }}</router-link>
+        From: <router-link :to="'/user/' + maintainer">{{ maintainer }}</router-link>
       </v-flex>
       <v-flex class="xs6" style="padding-right: .75rem;">
         <span class="right">Votes: {{ votes }} • Popularity: {{ popularity }}</span>

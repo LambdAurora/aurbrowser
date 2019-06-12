@@ -12,7 +12,7 @@ import Router from 'vue-router';
 
 import Index from './views/index';
 import About from './views/about.vue';
-import Account from './views/account.vue';
+import User from './views/user.vue';
 import Package from './views/package.vue';
 import Packages from './views/packages.vue';
 import Search from './views/search';
@@ -61,9 +61,9 @@ export const routes = [
     }
   },
   {
-    path: '/account/:name',
-    name: 'Account page',
-    component: Account,
+    path: '/user/:name',
+    name: 'User page',
+    component: User,
     meta: {
       icon: '',
       link: false

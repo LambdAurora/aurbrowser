@@ -72,7 +72,7 @@
         if (val == null) return;
         this.is_loading = true;
         aur.search(val, 'name-desc', results => {
-          this.search_entries = results.map(r => r.name);
+          this.search_entries = results.map(r => r.name).sort();
           if (val != null && !this.search_entries.includes(val))
             this.search_entries.unshift(val);
           this.is_loading = false;

@@ -88,7 +88,6 @@
           by: {text: get_by_name_from_value(this.by), value: this.by},
         },
         aquery: null,
-        search_timeout: null,
         search_by_items: [{text: 'Name, Description', value: 'name-desc'}, {text: 'Name only', value: 'name'}, {text: 'Maintainer', value: 'maintainer'}],
         results: {
           count: 0,
@@ -102,19 +101,12 @@
     },
     watch: {
       aquery() {
-        if (this.search_timeout != null) {
-          clearTimeout(this.search_timeout);
-          this.search_timeout = null;
-        }
         this.is_suggestions_loading = true;
         aur.search(this.aquery, this.by, results => {
-          this.results.entries = results.map(r => r.name);
+          this.results.entries = results.map(r => r.name).sort();
           if (this.aquery != null && !this.results.entries.includes(this.aquery))
             this.results.entries.unshift(this.aquery);
           this.is_suggestions_loading = false;
-          this.search_timeout = setTimeout(() => {
-            this.search_query = this.aquery;
-          }, 500);
         });
       },
       search_query(val) {
@@ -159,6 +151,7 @@
         this.results.content = [];
         return;
       }
+      this.aquery = this.query;
       aur.search(this.query, this.by, results => {
         this.update_results(results);
         this.is_loading = false;
