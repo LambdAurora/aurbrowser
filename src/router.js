@@ -12,6 +12,7 @@ import Router from 'vue-router';
 
 import Index from './views/index';
 import About from './views/about.vue';
+import Account from './views/account.vue';
 import Package from './views/package.vue';
 import Packages from './views/packages.vue';
 import Search from './views/search';
@@ -57,6 +58,15 @@ export const routes = [
     meta: {
       icon: 'search',
       link: true
+    }
+  },
+  {
+    path: '/account/:name',
+    name: 'Account page',
+    component: Account,
+    meta: {
+      icon: '',
+      link: false
     }
   },
   {

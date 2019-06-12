@@ -7,7 +7,17 @@
         <v-layout>
           <v-flex class="xs12 md10 offset-md1">
             <v-container>
-              <v-text-field v-model="search_query" v-on:change="search" hide-details prepend-icon="search" label="Search" type="search"></v-text-field>
+              <v-autocomplete id="search"
+                              v-model="search_query"
+                              :loading="is_loading"
+                              :items="search_entries"
+                              :search-input.sync="search_content"
+                              @change="search"
+                              hide-details
+                              prepend-icon="search"
+                              label="Search"
+                              type="search">
+              </v-autocomplete>
             </v-container>
           </v-flex>
         </v-layout>
@@ -47,6 +57,9 @@
       return {
         has_statistics_loaded: false,
         search_query: '',
+        search_content: '',
+        search_entries: [],
+        is_loading: false,
         statistics: '',
         page: {
           title: 'Home',
@@ -54,11 +67,22 @@
         }
       }
     },
+    watch: {
+      search_content(val) {
+        if (val == null) return;
+        this.is_loading = true;
+        aur.search(val, 'name-desc', results => {
+          this.search_entries = results.map(r => r.name);
+          if (val != null && !this.search_entries.includes(val))
+            this.search_entries.unshift(this.aquery);
+          this.is_loading = false;
+        });
+      }
+    },
     methods: {
       search: function () {
         this.$nextTick(function () {
           utils.search(this.search_query, 'name-desc');
-          this.$nextTick(this.update_search);
         });
       }
     },

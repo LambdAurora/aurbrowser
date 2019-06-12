@@ -162,7 +162,7 @@ export default {
                   .replace(/(\t)|(\n)+/g, ''),
                 author: author.replace(/(\t)|(\n)+/g, ''),
                 content: comment.content.innerHTML
-                  .replace(/@([\w_\-\d]+)/g, (match, g1) => `<a href="?page=account&account=${g1}" class="orange-text text-accent-2">${match}</a>`)
+                  .replace(/@([\w_\-\d]+)/g, (match, g1) => `<a href="/account/${g1}" class="orange-text text-accent-2">${match}</a>`)
                   .replace(/(\t)+/g, () => '')
               };
             });
@@ -188,7 +188,7 @@ export default {
                   .replace(/(\t)|(\n)+/g, ''),
                 author: author.replace(/(\t)|(\n)+/g, ''),
                 content: comment.content.innerHTML
-                  .replace(/@([\w_\-\d]+)/g, (match, g1) => `<a href="?page=account&account=${g1}" class="orange-text text-accent-2">${match}</a>`)
+                  .replace(/@([\w_\-\d]+)/g, (match, g1) => `<a href="/account/${g1}" class="orange-text text-accent-2">${match}</a>`)
                   .replace(/(\t)+/g, () => '')
               };
             })

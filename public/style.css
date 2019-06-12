@@ -67,3 +67,7 @@ li.search .search-wrapper i.material-icons
 .v-btn {
 	z-index: 0;
 }
+
+.v-autocomplete__content.v-menu__content, .v-autocomplete__content.v-menu__content .v-card {
+    max-height: 200px !important;
+}
