@@ -74,7 +74,7 @@
         aur.search(val, 'name-desc', results => {
           this.search_entries = results.map(r => r.name);
           if (val != null && !this.search_entries.includes(val))
-            this.search_entries.unshift(this.aquery);
+            this.search_entries.unshift(val);
           this.is_loading = false;
         });
       }
