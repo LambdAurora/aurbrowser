@@ -11,6 +11,7 @@
                           :loading="is_suggestions_loading"
                           :items="results.entries"
                           :search-input.sync="aquery"
+                          v-on:keyup.enter="search_event"
                           hide-details
                           prepend-icon="search"
                           label="Search"
@@ -122,7 +123,7 @@
           this.results.entries.unshift(this.aquery);
         this.results.content = content;
       },
-      update: function () {
+      update() {
         this.results.count = 0;
         this.is_loading = true;
         if (!app.is_search_valid(this.query, this.by)) {
@@ -136,7 +137,10 @@
           this.is_loading = false;
         });
       },
-      search: function () {
+      search_event() {
+        this.search_query = this.aquery;
+      },
+      search() {
         this.$nextTick(function () {
           utils.search(this.search_query, this.search_data.by.value);
           this.$nextTick(this.update);

@@ -11,6 +11,7 @@
                         :items="search_entries"
                         :search-input.sync="search_content"
                         @change="search"
+                        v-on:keyup.enter="search_event"
                         hide-details
                         prepend-icon="search"
                         label="Search"
@@ -101,7 +102,7 @@
       }
     },
     methods: {
-      update: function () {
+      update() {
         this.loading = true;
         this.$nextTick(function () {
           let index = (this.page_index - 1) * 50;
@@ -114,11 +115,15 @@
           });
         });
       },
-      total_pages: function () {
+      total_pages() {
         let rest = this.total_packages % 50;
         return (this.total_packages - rest) / 50;
       },
-      search: function () {
+      search_event() {
+        this.search_query = this.search_content;
+        this.search();
+      },
+      search() {
         this.$nextTick(function () {
           utils.search(this.search_query, this.search_by.value);
         });

@@ -13,6 +13,7 @@
                               :items="search_entries"
                               :search-input.sync="search_content"
                               @change="search"
+                              v-on:keyup.enter="search_event"
                               hide-details
                               prepend-icon="search"
                               label="Search"
@@ -80,7 +81,11 @@
       }
     },
     methods: {
-      search: function () {
+      search_event() {
+        this.search_query = this.search_content;
+        this.search();
+      },
+      search() {
         this.$nextTick(function () {
           utils.search(this.search_query, 'name-desc');
         });
