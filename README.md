@@ -15,4 +15,4 @@ Just simply go to [the aurbrowser website: https://aurbrowser.tk](https://aurbro
 
 ## Development builds
 
-You can see the development builds: [here](https://dev--aurbrowser.netlify.com/)!
+You can see the development builds: [here](https://dev.aurbrowser.tk/)!
