@@ -24,7 +24,7 @@
       </v-layout>
     </div>
     <v-container>
-      <v-card class="grey darken-1">
+      <v-card class="grey darken-2">
         <v-card-title class="white-text" primary-title>
           <span class="headline">Results of search "{{ query }}" ({{ results.count }}):</span>
         </v-card-title>
@@ -65,7 +65,7 @@
   }
 
   export default {
-    name: "search",
+    name: 'search',
     props: {
       query: {
         type: String,

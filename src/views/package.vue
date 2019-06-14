@@ -164,7 +164,7 @@
 </template>
 
 <script>
-  import CONSTANTS from "../constants";
+  import CONSTANTS from '../constants';
   import aur from '../aur';
   import utils from '../utils';
   import Prism from 'prismjs';

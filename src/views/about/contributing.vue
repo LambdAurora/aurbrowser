@@ -1,18 +1,19 @@
 <template>
   <v-container class="app-main">
-    <v-card color="ls-card grey darken-1" elevation="3" :flat="$vuetify.breakpoint.xsOnly">
+    <v-card color="ls-card grey darken-3" elevation="3" :flat="$vuetify.breakpoint.xsOnly">
       <v-card-title>
         <h1>Contributing to AUR Browser</h1>
       </v-card-title>
-      <v-card-text>
-        <vue-markdown :source="contributing" :breaks="false"></vue-markdown>
+      <v-card-text id="markdown_content">
+        <vue-markdown :source="contributing" :anchor-attributes="anchor_attrs" :breaks="false" :postrender="postrender"></vue-markdown>
       </v-card-text>
     </v-card>
   </v-container>
 </template>
 
 <script>
-  import CONSTANTS from "../../constants";
+  import CONSTANTS from '../../constants';
+  import utils from '../../utils';
   import VueMarkdown from 'vue-markdown';
   import axios from 'axios';
 
@@ -27,6 +28,9 @@
       return {
         VERSION: CONSTANTS.VERSION,
         contributing: 'Loading...',
+        anchor_attrs: {
+          rel: 'noopener noreferrer nofollow'
+        },
         page: {
           title: 'Contributing',
           description: 'See the contributing guidelines.'
@@ -35,6 +39,9 @@
     },
     mounted() {
       axios.get(markdown).then(res => this.contributing = res.data.replace('# Contributing to AUR Browser\n', ''));
+    },
+    methods: {
+      postrender: utils.markdown.postrender
     },
     head: {
       title() {

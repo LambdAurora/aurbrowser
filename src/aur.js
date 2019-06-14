@@ -84,7 +84,7 @@ function get_package_link(url) {
 
 export default {
   build_url: build_url,
-  get_statistics: (callback) => {
+  get_statistics(callback) {
     let page_doc = document.implementation.createHTMLDocument("Some page");
     let html = page_doc.createElement('html');
     utils.fetch_raw(CONSTANTS.AUR_BASE_URL, true, content => {
@@ -93,7 +93,7 @@ export default {
       callback(html.querySelector('div#pkg-stats table'));
     });
   },
-  get_packages: (index, callback) => {
+  get_packages(index, callback) {
     let page_doc = document.implementation.createHTMLDocument("Some page");
     let html = page_doc.createElement('html');
     utils.fetch_raw(build_url('packages', {index: index}), true, content => {
@@ -115,7 +115,7 @@ export default {
         }), parseInt(pkglist_stats[0].replace('.', '')));
     });
   },
-  get_package: (package_name, callback, error) => {
+  get_package(package_name, callback, error) {
     let page_doc = document.implementation.createHTMLDocument("Some page");
     let html = page_doc.createElement('html');
 
@@ -252,10 +252,9 @@ export default {
       });
     }, error);
   },
-  search: (keywords, by, callback) => {
+  search(keywords, by, callback) {
     fetch_rpc(build_url('search', {field: by, keywords: keywords}), json => {
       if (json.version !== 5 && json.type !== 'search') {
-        //render_error_page(main, "Got a wrong response from the AUR API.");
         return;
       }
 

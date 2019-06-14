@@ -17,7 +17,7 @@
 
 <script>
   export default {
-    name: "not_found.vue",
+    name: 'not_found',
     head: {
       title() {
         return {

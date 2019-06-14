@@ -1,7 +1,7 @@
 <template>
   <v-app dark style="background: #262A32 !important;">
     <v-toolbar app>
-      <v-toolbar-side-icon @click.stop="sidenav = !sidenav" class="ls-hide-on-large-and-up"></v-toolbar-side-icon>
+      <v-toolbar-side-icon id="toolbar_side_icon" @click.stop="sidenav = !sidenav" class="ls-hide-on-large-and-up"></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-md-center">
         <router-link to="/home">AUR Browser</router-link>
       </v-toolbar-title>
@@ -34,7 +34,7 @@
               </v-list-tile-action>
               <v-list-tile-content>Contributing</v-list-tile-content>
             </v-list-tile>
-            <v-list-tile href="https://github.com/LambdAurora/aurbrowser" target="_blank">
+            <v-list-tile href="https://github.com/LambdAurora/aurbrowser" target="_blank" rel="noopener noreferrer nofollow">
               <v-list-tile-action>
                 <i class="v-icon fab fa-github"></i>
               </v-list-tile-action>
@@ -57,13 +57,15 @@
       <v-card flat tile class="flex" style="background: #212329 !important;">
         <v-card-title>
           <v-container>
-            <h5 class="subheading">Made with <i class="fas fa-heart red--text text--darken-1"></i> on <a href="https://github.com/LambdAurora/aurbrowser">GitHub</a></h5>
+            <h5 class="subheading">
+              Made with <i class="fas fa-heart red--text text--darken-1"></i> on <a href="https://github.com/LambdAurora/aurbrowser" rel="noopener noreferrer nofollow">GitHub</a>
+            </h5>
           </v-container>
         </v-card-title>
         <v-card-actions>
           v{{ VERSION }}
           <v-spacer></v-spacer>
-          <a href="https://github.com/LambdAurora/aurbrowser/blob/master/LICENSE" class="grey--text text--darken-1 right">MIT License</a>
+          <a href="https://github.com/LambdAurora/aurbrowser/blob/master/LICENSE" rel="noopener noreferrer nofollow" class="grey--text text--lighten-1 right">MIT License</a>
         </v-card-actions>
       </v-card>
     </v-footer>
@@ -77,7 +79,7 @@
           </v-list-tile-action>
           <v-list-tile-content>{{ route.name }}</v-list-tile-content>
         </v-list-tile>
-        <divider />
+        <divider/>
         <v-list-tile to="/about/changelog">
           <v-list-tile-action>
             <v-icon>archive</v-icon>
@@ -90,7 +92,7 @@
           </v-list-tile-action>
           <v-list-tile-content>Contributing</v-list-tile-content>
         </v-list-tile>
-        <v-list-tile href="https://github.com/LambdAurora/aurbrowser" target="_blank">
+        <v-list-tile href="https://github.com/LambdAurora/aurbrowser" target="_blank" rel="noopener noreferrer nofollow">
           <v-list-tile-action>
             <i class="v-icon fab fa-github"></i>
           </v-list-tile-action>

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card color="ls-card grey darken-1" elevation="3" :flat="$vuetify.breakpoint.xsOnly">
+    <v-card color="ls-card grey darken-2" elevation="3" :flat="$vuetify.breakpoint.xsOnly">
       <v-card-title primary-title>
         <a :href="CONSTANTS.AUR_BASE_URL + '/account/' + $route.params.name + '/'" class="headline orange-text text-accent-2">{{ $route.params.name }}</a>
       </v-card-title>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import CONSTANTS from "../constants";
+  import CONSTANTS from '../constants';
   import aur from '../aur';
 
   import Divider from '../components/divider.vue';

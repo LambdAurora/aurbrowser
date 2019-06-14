@@ -1,8 +1,20 @@
 # Changelog
 
-## v1.2.0
+## v1.2.0 :tada:
 
 The Vue.js rewrite. The true initial release. :tada:
+
+- Everything is rewritten with [Vue.js](https://vuejs.org/), [Vuetify](https://vuetifyjs.com/), etc...
+- Removed [MaterializeCSS](https://materializecss.com/).
+- Use better links for pages.
+- Added seamless page navigation.
+- Added contributing page.
+- Added changelog page.
+- Made a better user page.
+- Added autocomplete for search.
+- Added header rules.
+- Added Open Graph properties (hello previews).
+- Changed the CORS anywhere URL. (refer to 01/06/2019 changes)
 
 ## 01/06/2019
 
@@ -26,4 +38,4 @@ The Vue.js rewrite. The true initial release. :tada:
 
 ## v1.0.0
 
-Initial concept release.
+:tada: Initial concept release. :tada:

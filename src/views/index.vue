@@ -53,7 +53,7 @@
   import utils from '../utils';
 
   export default {
-    name: "index",
+    name: 'index',
     data: () => {
       return {
         has_statistics_loaded: false,

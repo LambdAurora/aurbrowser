@@ -71,3 +71,13 @@ li.search .search-wrapper i.material-icons
 .v-autocomplete__content.v-menu__content, .v-autocomplete__content.v-menu__content .v-card {
     max-height: 200px !important;
 }
+
+#toolbar_side_icon .material-icons {
+    height: 24px !important;
+    line-height: 24px !important;
+}
+
+li[data-markdown-list] {
+    margin-left: 16px;
+    list-style-type: disc !important;
+}

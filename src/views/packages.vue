@@ -27,7 +27,7 @@
       </v-flex>
     </v-layout>
     <v-container>
-      <v-card class="grey darken-1">
+      <v-card class="grey darken-2">
         <v-card-title class="white-text" primary-title>
           <span class="headline">Packages ({{ total_packages }}):</span>
         </v-card-title>
@@ -59,7 +59,7 @@
   import PackageSection from '../components/package_section.vue';
 
   export default {
-    name: "packages",
+    name: 'packages',
     props: {
       index: {
         type: Number,
