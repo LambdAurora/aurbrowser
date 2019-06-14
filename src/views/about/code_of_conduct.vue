@@ -2,10 +2,10 @@
   <v-container class="app-main">
     <v-card color="ls-card grey darken-1" elevation="3" :flat="$vuetify.breakpoint.xsOnly">
       <v-card-title>
-        <h1>Changelog</h1>
+        <h1>Contributor Covenant Code of Conduct</h1>
       </v-card-title>
       <v-card-text id="content">
-        <vue-markdown :source="changelog" :breaks="false"></vue-markdown>
+        <vue-markdown :source="code_of_conduct" :breaks="false"></vue-markdown>
       </v-card-text>
     </v-card>
   </v-container>
@@ -16,25 +16,25 @@
   import VueMarkdown from 'vue-markdown';
   import axios from 'axios';
 
-  const markdown = require('../../../CHANGELOG.md');
+  const markdown = require('../../../CODE_OF_CONDUCT.md');
 
   export default {
-    name: "changelog",
+    name: "code_of_conduct",
     components: {
       VueMarkdown
     },
     data() {
       return {
         VERSION: CONSTANTS.VERSION,
-        changelog: 'Loading...',
+        code_of_conduct: 'Loading...',
         page: {
-          title: 'Changelog',
-          description: 'See the changelog of AUR Browser. Always know what changed!'
+          title: 'Code of Conduct',
+          description: 'The Code of Conduct of the AUR Browser project.'
         }
       }
     },
     mounted() {
-      axios.get(markdown).then(res => this.changelog = res.data.replace('# Changelog\n', ''));
+      axios.get(markdown).then(res => this.code_of_conduct = res.data.replace('# Contributor Covenant Code of Conduct\n', ''));
     },
     head: {
       title() {
@@ -59,5 +59,6 @@
 <style scoped>
   #content {
     padding-left: 3em;
+    padding-right: 3em;
   }
 </style>

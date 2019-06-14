@@ -12,6 +12,9 @@ import Router from 'vue-router';
 
 import Index from './views/index';
 import About from './views/about.vue';
+import Changelog from './views/about/changelog';
+import Contributing from './views/about/contributing';
+import CodeOfConduct from './views/about/code_of_conduct';
 import User from './views/user.vue';
 import Package from './views/package.vue';
 import Packages from './views/packages.vue';
@@ -48,6 +51,33 @@ export const routes = [
     meta: {
       icon: 'info',
       link: true
+    }
+  },
+  {
+    path: '/about/changelog',
+    name: 'Changelog',
+    component: Changelog,
+    meta: {
+      icon: 'archive',
+      link: false
+    }
+  },
+  {
+    path: '/about/contributing',
+    name: 'Contributing',
+    component: Contributing,
+    meta: {
+      icon: '',
+      link: false
+    }
+  },
+  {
+    path: '/about/code_of_conduct',
+    name: 'Code of Conduct',
+    component: CodeOfConduct,
+    meta: {
+      icon: '',
+      link: false
     }
   },
   {

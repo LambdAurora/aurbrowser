@@ -109,7 +109,7 @@
             <h5 class="center white--text">Contribute</h5>
 
             <p class="light white--text">
-              Wants to contribute? Go ahead on <a href="https://github.com/LambdAurora/aurbrowser.git" target="_blank" class="orange--text text--accent-2">GitHub</a>, we don't
+              Wants to contribute? Read the <router-link to="/about/contributing">contributing guide</router-link> then go ahead on <a href="https://github.com/LambdAurora/aurbrowser.git" target="_blank" class="orange--text text--accent-2">GitHub</a>, we don't
               bite!
             </p>
           </div>

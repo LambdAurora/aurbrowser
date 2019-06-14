@@ -386,7 +386,6 @@ h6 {
   left: 0;
   background-color: inherit;
   border-radius: inherit;
-  -webkit-transition: opacity .3s, -webkit-transform: .3s;
   transition: opacity .3s, -webkit-transform .3s;
   transition: opacity .3s, transform .3s;
   transition: opacity .3s, transform .3s, -webkit-transform .3s;
@@ -485,7 +484,7 @@ h6 {
   }
 }
 
-@media only screen and (min-width: 992px) and (max-wdith: 1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
   .ls-hide-on-large-only {
     display: none !important;
   }
@@ -521,7 +520,7 @@ h6 {
   }
 }
 
-@media only screen and (min-width: 992px) and (max-wdith: 1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
   .ls-show-on-large-only {
     display: block !important;
   }

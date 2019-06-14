@@ -14,10 +14,34 @@
         <v-btn icon to="/search">
           <v-icon>search</v-icon>
         </v-btn>
-        <v-btn flat to="/about">
-          <v-icon left>info</v-icon>
-          About
-        </v-btn>
+        <v-menu open-on-hover offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn flat to="/about" v-on="on">
+              <v-icon left>info</v-icon>
+              About
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-tile to="/about/changelog">
+              <v-list-tile-action>
+                <v-icon>archive</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>Changelog</v-list-tile-content>
+            </v-list-tile>
+            <v-list-tile to="/about/contributing">
+              <v-list-tile-action>
+                <v-icon>fa-hands-helping</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>Contributing</v-list-tile-content>
+            </v-list-tile>
+            <v-list-tile to="/about/code_of_conduct">
+              <v-list-tile-action>
+                <v-icon>all_inclusive</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>Code of Conduct</v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
         <v-btn flat to="/packages">
           <v-icon left>apps</v-icon>
           Packages
