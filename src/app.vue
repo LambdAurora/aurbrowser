@@ -23,29 +23,6 @@
           Packages
         </v-btn>
       </v-toolbar-items>
-      <!--<ul class="right hide-on-med-and-down">
-        <li>
-          <a href="/">
-            <i class="material-icons left">home</i>
-            Home
-          </a>
-        </li>
-        <li>
-          <a href="/search"><i class="material-icons">search</i></a>
-        </li>
-        <li>
-          <a href="/about">
-            <i class="material-icons left">info</i>
-            About
-          </a>
-        </li>
-        <li>
-          <a href="/packages">
-            <i class="material-icons left">apps</i>
-            Packages
-          </a>
-        </li>
-      </ul>-->
     </v-toolbar>
 
     <v-content>

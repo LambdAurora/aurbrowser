@@ -55,46 +55,4 @@
 </script>
 
 <style scoped>
-  .collection {
-    margin: .5rem 0 1rem 0;
-    border: 1px solid #e0e0e0;
-    border-radius: 2px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .collection-item {
-    line-height: 1.5rem;
-    padding: 10px 20px;
-    margin: 0;
-  }
-
-  .collection-item-alert {
-    line-height: 1.5rem;
-    margin: 0;
-  }
-
-  .flags-chip {
-    font-size: 0.8rem;
-    line-height: 22px;
-    height: 22px;
-    margin: 0 4px;
-  }
-
-  .v-alert {
-    margin: 0;
-  }
-
-  code {
-    box-shadow: 0 0 0 0;
-    width: 100%
-  }
-
-  .pkg-details-section {
-    margin: 0.2em 0.35em;
-  }
-
-  .pkg-details-header {
-    padding: 0.2em 0.35em;
-  }
 </style>
