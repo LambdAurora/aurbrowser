@@ -34,8 +34,7 @@
       }
     },
     mounted() {
-      axios.get(markdown).then(res => this.contributing = res.data.replace('# Contributing to AUR Browser\n', '')
-        .replaceAll('https://github.com/LambdAurora/aurbrowser/blob/master/CODE_OF_CONDUCT.md', '/about/code_of_conduct'));
+      axios.get(markdown).then(res => this.contributing = res.data.replace('# Contributing to AUR Browser\n', ''));
     },
     head: {
       title() {

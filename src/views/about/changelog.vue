@@ -57,7 +57,4 @@
 </script>
 
 <style scoped>
-  #content {
-    padding-left: 3em;
-  }
 </style>

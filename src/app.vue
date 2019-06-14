@@ -34,11 +34,11 @@
               </v-list-tile-action>
               <v-list-tile-content>Contributing</v-list-tile-content>
             </v-list-tile>
-            <v-list-tile to="/about/code_of_conduct">
+            <v-list-tile href="https://github.com/LambdAurora/aurbrowser" target="_blank">
               <v-list-tile-action>
-                <v-icon>all_inclusive</v-icon>
+                <i class="v-icon fab fa-github"></i>
               </v-list-tile-action>
-              <v-list-tile-content>Code of Conduct</v-list-tile-content>
+              <v-list-tile-content>GitHub</v-list-tile-content>
             </v-list-tile>
           </v-list>
         </v-menu>
@@ -77,6 +77,25 @@
           </v-list-tile-action>
           <v-list-tile-content>{{ route.name }}</v-list-tile-content>
         </v-list-tile>
+        <divider />
+        <v-list-tile to="/about/changelog">
+          <v-list-tile-action>
+            <v-icon>archive</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>Changelog</v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile to="/about/contributing">
+          <v-list-tile-action>
+            <v-icon>fa-hands-helping</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>Contributing</v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile href="https://github.com/LambdAurora/aurbrowser" target="_blank">
+          <v-list-tile-action>
+            <i class="v-icon fab fa-github"></i>
+          </v-list-tile-action>
+          <v-list-tile-content>GitHub</v-list-tile-content>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
   </v-app>
@@ -84,9 +103,13 @@
 
 <script>
   import app from './app';
+  import Divider from './components/divider';
 
   export default {
     name: 'App',
+    components: {
+      Divider
+    },
     data() {
       return {
         VERSION: app.VERSION,
