@@ -29,6 +29,11 @@ export default {
     Vue.use(VueHead);
     utils.init(router);
 
+    Vue.prototype.$dark_mode = false;
+    Vue.prototype.$change_theme = function (theme) {
+      this.$dark_mode = theme;
+    };
+
     new Vue({
       render: h => h(App),
       router

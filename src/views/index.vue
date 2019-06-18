@@ -2,8 +2,8 @@
   <v-container>
     <v-layout id="index-banner">
       <v-flex>
-        <h1 class="center blue-grey--text text--lighten-4 brand-title">AUR Browser</h1>
-        <h5 class="center light white--text">A web AUR browser.</h5>
+        <h1 class="center brand-title">AUR Browser</h1>
+        <h5 class="center light">A web AUR browser.</h5>
         <v-layout>
           <v-flex class="xs12 md10 offset-md1">
             <v-container>
@@ -27,7 +27,7 @@
     <br/>
     <v-layout id="main_container">
       <v-flex class="xs12 md6 offset-md3">
-        <v-card>
+        <v-card class="ls-card">
           <v-card-title>
             <div><span class="headline mb-0">Statistics</span></div>
           </v-card-title>

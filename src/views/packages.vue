@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-layout class="grey lighten-2 elevation-2" row wrap style="padding: 0 .75rem .5rem;">
+    <v-layout v-bind:class="{'grey lighten-2 elevation-2': !dark_theme, 'grey darken-2 elevation-2': dark_theme}" row wrap style="padding: 0 .75rem .5rem;">
       <v-flex class="xs3">
-        <v-combobox v-model="search_by" v-on:input="search" type="button" :items="search_by_items" label="Search by:" hide-details light></v-combobox>
+        <v-combobox v-model="search_by" v-on:input="search" type="button" :items="search_by_items" label="Search by:" hide-details></v-combobox>
       </v-flex>
       <v-flex class="xs9">
         <v-autocomplete id="search"
@@ -16,7 +16,6 @@
                         prepend-icon="search"
                         label="Search"
                         single-line
-                        light
                         dense>
         </v-autocomplete>
       </v-flex>
@@ -27,19 +26,19 @@
       </v-flex>
     </v-layout>
     <v-container>
-      <v-card class="grey darken-2">
-        <v-card-title class="white-text" primary-title>
+      <v-card class="ls-card elevation-6">
+        <v-card-title primary-title>
           <span class="headline">Packages ({{ total_packages }}):</span>
         </v-card-title>
         <divider/>
         <div v-if="loading">
           <v-progress-linear :indeterminate="true"></v-progress-linear>
         </div>
-        <div v-else v-for="result in results" v-bind:key="result.name">
+        <div v-else v-for="(result, index) in results" v-bind:key="result.name">
           <package-section v-bind:name="result.name" v-bind:version="result.version" v-bind:out_of_date="result.out_of_date" v-bind:description="result.description"
                            v-bind:maintainer="result.maintainer" v-bind:last_modified="result.last_modified" v-bind:votes="result.votes"
                            v-bind:popularity="result.popularity"></package-section>
-          <divider/>
+          <divider v-if="index + 1 < results.length"/>
         </div>
       </v-card>
     </v-container>
@@ -64,7 +63,8 @@
       index: {
         type: Number,
         default: 0
-      }
+      },
+      dark_theme: Boolean
     },
     components: {
       Divider,
@@ -130,6 +130,7 @@
       }
     },
     created() {
+      console.log(this.dark_theme);
       console.log(`Getting packages list (index: ${this.index})...`);
       aur.get_packages(this.index, (results, count) => {
         this.total_packages = count;

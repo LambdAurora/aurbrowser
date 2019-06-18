@@ -1,13 +1,13 @@
 <template>
   <v-container>
-    <v-card color="ls-card grey darken-1" elevation="3" :flat="$vuetify.breakpoint.xsOnly">
+    <v-card class="ls-card" elevation="3" :flat="$vuetify.breakpoint.xsOnly">
       <v-card-title primary-title>
         <div class="headline" v-if="result_details === 404">
           <span class="red--text">Package '{{ $route.params.pkg }}' was not found.</span>
         </div>
         <div class="headline" v-else-if="pkg != null">
           <a :href="CONSTANTS.AUR_BASE_URL + '/packages/' + $route.params.pkg + '/'" class="orange-text text-accent-2">{{ $route.params.pkg }}</a>
-          v<span :class="{ 'red--text': pkg.out_of_date }">{{ pkg.version }}</span>
+          v<span :class="{ 'red--text': pkg.out_of_date, 'text--darken-1': pkg.out_of_date }">{{ pkg.version }}</span>
         </div>
         <span v-else class="headline">Loading...</span>
       </v-card-title>
@@ -19,78 +19,84 @@
       </v-card-text>
       <v-card-text v-else-if="pkg != null">
         <ul class="collection">
-          <li class="collection-item grey darken-2">Clone URL (Git): <a :href="get_clone_url()" class="orange-text text-accent-2">{{ get_clone_url() }}</a> (Read only)
-          </li>
+          <collection-item :dark="dark_theme">
+            Clone URL (Git): <a :href="get_clone_url()" class="orange-text text-accent-2">{{ get_clone_url() }}</a> (Read only)
+          </collection-item>
           <li class="ls-divider"></li>
           <template v-if="pkg.out_of_date">
-            <li class="collection-item-alert grey darken-2">
+            <li class="collection-item-alert">
               <v-alert :value="true" type="error">Flagged out-of-date ({{ utils.convert_timestamp(pkg.out_of_date) }})</v-alert>
             </li>
             <li class="ls-divider"></li>
           </template>
-          <li class="collection-item grey darken-2">Description: {{ pkg.description }}</li>
+          <collection-item :dark="dark_theme">Description: {{ pkg.description }}</collection-item>
           <li class="ls-divider"></li>
-          <li class="collection-item grey darken-2">
+          <collection-item :dark="dark_theme">
             Link:
             <a :href="pkg.link.url">
               <span v-if="pkg.link.icon != null" :class="'fab fa-' + pkg.link.icon" :style="'color: ' + pkg.link.foreground"></span>
               {{ pkg.link.url }}
             </a>
-          </li>
+          </collection-item>
           <li class="ls-divider"></li>
           <template v-if="pkg.keywords.length > 0">
-            <li class="collection-item grey darken-2">
+            <collection-item :dark="dark_theme">
               Keywords:
               <template v-for="keyword in pkg.keywords">
                 <v-chip v-bind:key="keyword" color="primary" label class="flags-chip">{{ keyword }}</v-chip>
               </template>
-            </li>
+            </collection-item>
             <li class="ls-divider"></li>
           </template>
           <template v-if="pkg.license !== undefined">
-            <li class="collection-item grey darken-2">Licenses: {{ pkg.license.join(',') }}</li>
+            <collection-item :dark="dark_theme">Licenses: {{ pkg.license.join(',') }}</collection-item>
             <li class="ls-divider"></li>
           </template>
           <template v-if="pkg.conflicts">
-            <li class="collection-item grey darken-2">
+            <collection-item :dark="dark_theme">
               Conflicts:
               <span v-html="pkg.conflicts.map(conflict => `<a href='/package/${conflict}'>${conflict}</a>`).join(', ')"></span>
-            </li>
+            </collection-item>
             <li class="ls-divider"></li>
           </template>
-          <li class="collection-item grey darken-2">Submitter: <router-link :to="'/user/' + pkg.submitter">{{ pkg.submitter }}</router-link></li>
+          <collection-item :dark="dark_theme">Submitter:
+            <router-link :to="'/user/' + pkg.submitter">{{ pkg.submitter }}</router-link>
+          </collection-item>
           <li class="ls-divider"></li>
-          <li class="collection-item grey darken-2">
+          <collection-item :dark="dark_theme">
             Maintainer:
             <span v-if="pkg.orphan || pkg.maintainer[0] === 'None'" class="red--text">None</span>
             <template v-else>
               <router-link v-if="pkg.maintainer.length === 1" :to="'/user/' + pkg.maintainer[0]">{{ pkg.maintainer[0] }}</router-link>
               <template v-else v-for="(person, index) in pkg.maintainer">
-                <span v-if="index !== 0" v-bind:key="index">, </span><router-link :to="'/user/' + person" v-bind:key="person">{{ person }}</router-link>
+                <span v-if="index !== 0" v-bind:key="index">, </span>
+                <router-link :to="'/user/' + person" v-bind:key="person">{{ person }}</router-link>
               </template>
             </template>
-          </li>
+          </collection-item>
           <li class="ls-divider"></li>
-          <li class="collection-item grey darken-2">Last packager: <router-link :to="'/user/' + pkg.last_packager">{{ pkg.last_packager }}</router-link></li>
+          <collection-item :dark="dark_theme">Last packager:
+            <router-link :to="'/user/' + pkg.last_packager">{{ pkg.last_packager }}</router-link>
+          </collection-item>
           <li class="ls-divider"></li>
-          <li class="collection-item grey darken-2">Votes: {{ pkg.votes }}</li>
+          <collection-item :dark="dark_theme">Votes: {{ pkg.votes }}</collection-item>
           <li class="ls-divider"></li>
-          <li class="collection-item grey darken-2">Popularity: {{ pkg.popularity }}</li>
+          <collection-item :dark="dark_theme">Popularity: {{ pkg.popularity }}</collection-item>
           <li class="ls-divider"></li>
-          <li class="collection-item grey darken-2">First submitted: {{ pkg.first_submitted }}</li>
+          <collection-item :dark="dark_theme">First submitted: {{ pkg.first_submitted }}</collection-item>
           <li class="ls-divider"></li>
-          <li class="collection-item grey darken-2">Last updated: {{ pkg.last_modified }}</li>
+          <collection-item :dark="dark_theme">Last updated: {{ pkg.last_modified }}</collection-item>
         </ul>
 
         <v-layout row>
           <v-flex class="xs12 md6 pkg-details-section">
-            <h6 class="pkg-details-header grey darken-2">Dependencies ({{ pkg.dependencies.count }})</h6>
+            <h6 class="pkg-details-header grey darken-2 white--text">Dependencies ({{ pkg.dependencies.count }})</h6>
             <ul>
               <li v-for="item in pkg.dependencies.items" v-bind:key="item" v-html="item"></li>
             </ul>
           </v-flex>
           <v-flex class="xs12 md6 pkg-details-section">
-            <h6 class="pkg-details-header grey darken-2">Required by ({{ pkg.required_by.count }})</h6>
+            <h6 class="pkg-details-header grey darken-2 white--text">Required by ({{ pkg.required_by.count }})</h6>
             <ul>
               <li v-for="item in pkg.required_by.items" v-bind:key="item" v-html="item"></li>
             </ul>
@@ -99,7 +105,7 @@
 
         <v-layout row>
           <v-flex class="xs12 pkg-details-section">
-            <h6 class="pkg-details-header grey darken-2">Sources ({{ pkg.files.count }})</h6>
+            <h6 class="pkg-details-header grey darken-2 white--text">Sources ({{ pkg.files.count }})</h6>
             <ul>
               <li v-for="item in pkg.files.items" v-bind:key="item" v-html="item"></li>
             </ul>
@@ -116,13 +122,17 @@
 
     <v-layout row>
       <v-flex style="margin-top: 1em;" v-if="pkg != null && pkg.comments.pinned.length !== 0">
-        <v-card id="pinned_comments" class="grey darken-1">
-          <v-card-title primary-title class="grey darken-2" style="padding: 12px;">
+        <v-card id="pinned_comments" class="ls-card">
+          <v-card-title primary-title class="grey darken-2 white--text" style="padding: 12px;">
             <h5 style="margin: 0;"><i class="fas fa-thumbtack"></i> Pinned comments</h5>
           </v-card-title>
           <div v-for="(comment, index) in pkg.comments.pinned" v-bind:key="index">
-            <div :id="comment.author + '_' + index" class="section" style="display: flex; flex-wrap: wrap; flex-direction: column; margin: 0 0.25em 0 0.25em;" :key="comment.author + comment.header">
-              <h6><router-link :to="'/user/' + comment.author">{{ comment.author }}</router-link> {{ comment.header }}</h6>
+            <div :id="comment.author + '_' + index" class="section" style="display: flex; flex-wrap: wrap; flex-direction: column; margin: 0 0.25em 0 0.25em;"
+                 :key="comment.author + comment.header">
+              <h6>
+                <router-link :to="'/user/' + comment.author">{{ comment.author }}</router-link>
+                {{ comment.header }}
+              </h6>
               <p style="margin: 0.25em 0 0.25em 0.25em;" v-html="comment.content"></p>
             </div>
             <divider :key="comment.header" v-if="index !== pkg.comments.pinned.length - 1"/>
@@ -133,13 +143,16 @@
 
     <v-layout row>
       <v-flex style="margin-top: 1em;" v-if="pkg != null && pkg.comments.comments.length !== 0">
-        <v-card id="comments" class="grey darken-1">
-          <v-card-title primary-title class="grey darken-2" style="padding: 12px;">
+        <v-card id="comments" class="ls-card">
+          <v-card-title primary-title class="grey darken-2 white--text" style="padding: 12px;">
             <h5 style="margin: 0;"><i class="fas fa-comment"></i> Comments</h5>
           </v-card-title>
           <div v-for="(comment, index) in pkg.comments.comments" v-bind:key="index">
             <div class="section" style="display: flex; flex-wrap: wrap; flex-direction: column; margin: 0 0.25em 0 0.25em;" :key="comment.author + comment.header">
-              <h6><router-link :to="'/user/' + comment.author">{{ comment.author }}</router-link> {{ comment.header }}</h6>
+              <h6>
+                <router-link :to="'/user/' + comment.author">{{ comment.author }}</router-link>
+                {{ comment.header }}
+              </h6>
               <p style="margin: 0.25em 0 0.25em 0.25em;" v-html="comment.content"></p>
             </div>
             <divider :key="comment.header" v-if="index !== pkg.comments.comments.length - 1"/>
@@ -170,9 +183,17 @@
   import Prism from 'prismjs';
 
   import Divider from '../components/divider.vue';
+  import CollectionItem from '../components/collection_item.vue';
 
   export default {
     name: 'package',
+    components: {
+      Divider,
+      CollectionItem
+    },
+    props: {
+      dark_theme: Boolean
+    },
     data() {
       return {
         CONSTANTS: CONSTANTS,
@@ -184,18 +205,14 @@
         result_details: null
       }
     },
-    components: {
-      Divider,
-    },
     methods: {
-      get_clone_url: function () {
+      get_clone_url() {
         return CONSTANTS.AUR_BASE_URL + '/' + this.$route.params.pkg + '.git';
       }
     },
     created() {
       aur.get_package(this.$route.params.pkg, result => {
         this.pkg = result;
-        console.log(this.pkg.comments);
         utils.fetch_raw(aur.build_url('package_pkgbuild', {package: result.name}), true, pkgbuild_doc => {
           this.pkgbuild = true;
           this.pkgbuild_content = Prism.highlight(pkgbuild_doc.replaceAll('<', '\u003C').replaceAll('>', '\u003E'), Prism.languages.bash);

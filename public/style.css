@@ -81,3 +81,23 @@ li[data-markdown-list] {
     margin-left: 16px;
     list-style-type: disc !important;
 }
+
+.color_search_input {
+    background-color: #27292b;
+}
+
+.color_page_navigator {
+    background-color: #303234;
+}
+
+.color_packages {
+    background-color: #101922 !important;
+}
+
+.page_background {
+    background: #E6ECF0 !important;
+}
+
+.page_background_dark {
+    background: #27292b !important;
+}

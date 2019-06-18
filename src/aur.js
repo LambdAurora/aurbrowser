@@ -150,12 +150,10 @@ export default {
         if (pkg_comments) {
           pinned_comments = utils.to_array(pkg_comments)
             .map(comment_header => {
-              console.log(comment_header);
               return {header: comment_header, content: pkg_comments_section[0].querySelector(`div#${comment_header.id}-content`)};
             })
             .filter(comment => comment.content)
             .map(comment => {
-              console.log(comment);
               let author = comment.header.innerText.split(' ')[0];
               return {
                 header: comment.header.innerText.replace(author, '')
@@ -176,12 +174,10 @@ export default {
         if (pkg_comments) {
           comments = utils.to_array(pkg_comments)
             .map(comment_header => {
-              console.log(comment_header);
               return {header: comment_header, content: pkg_comments_section[i].querySelector(`div#${comment_header.id}-content`)};
             })
             .filter(comment => comment.content)
             .map(comment => {
-              console.log(comment);
               let author = comment.header.innerText.split(' ')[0];
               return {
                 header: comment.header.innerText.replace(author, '')

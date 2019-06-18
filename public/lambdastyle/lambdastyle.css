@@ -122,19 +122,19 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     font-size: 5.25rem;
     line-height: 110%;
-    margin: 2.8rem 0 1.68rem 0;
+    margin: 2.2rem 0 1.68rem 0;
 }
 
 h2 {
     font-size: 3.75rem;
     line-height: 110%;
-    margin: 2.373rem 0 1.424rem 0;
+    margin: 2rem 0 1.424rem 0;
 }
 
 h3 {
     font-size: 3rem;
     line-height: 110%;
-    margin: 1.94667rem 0 1.168rem 0;
+    margin: 1.767rem 0 1.168rem 0;
 }
 
 h4 {
@@ -308,6 +308,10 @@ h6 {
     border-top: 1px solid #e0e0e033;
     position: relative;
     padding: 8px;
+}
+
+.ls-card:not([flat]) {
+    border-radius: 4px;
 }
 
 .ls-card:not([flat]) .ls-card-actions:last-child {

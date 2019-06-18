@@ -1,8 +1,9 @@
 <template>
-  <v-app dark style="background: #262A32 !important;">
-    <v-toolbar app>
+  <v-app :dark="dark_mode" v-bind:class="{'page_background': !dark_mode, 'page_background_dark': dark_mode}">
+    <v-toolbar dark app>
       <v-toolbar-side-icon id="toolbar_side_icon" @click.stop="sidenav = !sidenav" class="ls-hide-on-large-and-up"></v-toolbar-side-icon>
-      <v-toolbar-title class="headline text-md-center">
+      <v-toolbar-title class="headline text-md-center" style="display: flex; align-items: center;">
+        <img src="/aurbrowser_white_64.png" alt="aurbrowser logo" height="32" width="32" style="margin-right: 0.5em;"/>
         <router-link to="/home">AUR Browser</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -11,9 +12,6 @@
           <v-icon left>home</v-icon>
           Home
         </v-btn>
-        <v-btn icon to="/search">
-          <v-icon>search</v-icon>
-        </v-btn>
         <v-menu open-on-hover offset-y>
           <template v-slot:activator="{ on }">
             <v-btn flat to="/about" v-on="on">
@@ -21,7 +19,7 @@
               About
             </v-btn>
           </template>
-          <v-list>
+          <v-list dark>
             <v-list-tile to="/about/changelog">
               <v-list-tile-action>
                 <v-icon>archive</v-icon>
@@ -42,18 +40,25 @@
             </v-list-tile>
           </v-list>
         </v-menu>
+        <v-btn icon to="/search">
+          <v-icon>search</v-icon>
+        </v-btn>
         <v-btn flat to="/packages">
           <v-icon left>apps</v-icon>
           Packages
+        </v-btn>
+        <v-btn icon @click="dark_mode = !dark_mode;">
+          <v-icon v-if="dark_mode" style="line-height: 24px; height: 24px;">brightness_3</v-icon>
+          <v-icon v-else style="line-height: 24px; height: 24px;">brightness_5</v-icon>
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
 
     <v-content>
-      <router-view/>
+      <router-view :dark_theme="dark_mode"/>
     </v-content>
 
-    <v-footer height="auto">
+    <v-footer dark height="auto">
       <v-card flat tile class="flex" style="background: #212329 !important;">
         <v-card-title>
           <v-container>
@@ -98,6 +103,12 @@
           </v-list-tile-action>
           <v-list-tile-content>GitHub</v-list-tile-content>
         </v-list-tile>
+        <divider/>
+        <v-list-tile>
+          <v-list-tile-action>
+            <v-switch v-model="dark_mode" color="primary" label="Dark mode"></v-switch>
+          </v-list-tile-action>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
   </v-app>
@@ -115,7 +126,20 @@
     data() {
       return {
         VERSION: app.VERSION,
+        dark_mode: this.$dark_mode,
         sidenav: false
+      }
+    },
+    mounted() {
+      if (localStorage.dark_mode) {
+        this.$change_theme(localStorage.dark_mode === 'true');
+        this.dark_mode = this.$dark_mode;
+      }
+    },
+    watch: {
+      dark_mode(val) {
+        localStorage.dark_mode = val;
+        this.$change_theme(val);
       }
     },
     computed: {

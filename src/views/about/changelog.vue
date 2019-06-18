@@ -1,7 +1,7 @@
 <template>
   <v-container class="app-main">
-    <v-card color="ls-card grey darken-3" elevation="3" :flat="$vuetify.breakpoint.xsOnly">
-      <v-card-title>
+    <v-card class="ls-card" elevation="3" :flat="$vuetify.breakpoint.xsOnly">
+      <v-card-title primary-title>
         <h1>Changelog</h1>
       </v-card-title>
       <v-card-text id="markdown_content">

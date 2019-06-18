@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="row">
-      <v-layout class="grey lighten-2 elevation-2" row wrap style="padding: 0 .75rem .5rem;">
+      <v-layout v-bind:class="{'grey lighten-2 elevation-2': !dark_theme, 'grey darken-2 elevation-2': dark_theme}" row wrap style="padding: 0 .75rem .5rem;">
         <v-flex class="xs3">
-          <v-combobox v-model="search_data.by" v-on:input="search" type="button" :items="search_by_items" label="Search by:" hide-details light></v-combobox>
+          <v-combobox v-model="search_data.by" v-on:input="search" type="button" :items="search_by_items" label="Search by:" hide-details></v-combobox>
         </v-flex>
         <v-flex class="xs9">
           <v-autocomplete id="search"
@@ -17,15 +17,14 @@
                           label="Search"
                           single-line
                           :allow-overflow="false"
-                          dense
-                          light>
+                          dense>
           </v-autocomplete>
         </v-flex>
       </v-layout>
     </div>
     <v-container>
-      <v-card class="grey darken-2">
-        <v-card-title class="white-text" primary-title>
+      <v-card class="elevation-6">
+        <v-card-title primary-title>
           <span class="headline">Results of search "{{ query }}" ({{ results.count }}):</span>
         </v-card-title>
         <divider/>
@@ -69,11 +68,13 @@
     props: {
       query: {
         type: String,
+        default: ''
       },
       by: {
         type: String,
         default: 'name-desc'
-      }
+      },
+      dark_theme: Boolean
     },
     components: {
       Divider,
