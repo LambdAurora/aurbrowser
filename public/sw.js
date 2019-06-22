@@ -9,7 +9,6 @@ const files_to_cache = [
 	'index.html',
 	'app.js',
 	'script.js',
-	'home',
 	'style.css',
 	'_headers',
 	'lambdastyle/lambdastyle.css',

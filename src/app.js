@@ -16,6 +16,8 @@ import utils from './utils';
 
 import App from './app.vue';
 
+import './sw_register'
+
 function is_by_filter_valid(by_filter) {
   return by_filter === 'name' || by_filter === 'name-desc' || by_filter === 'maintainer';
 }

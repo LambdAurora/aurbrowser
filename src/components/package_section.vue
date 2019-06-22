@@ -27,7 +27,7 @@
             </div>
           </v-flex>
           <v-flex>
-            <h6 class="ls-show-on-small-only">v<span v-bind:class="{ 'red--text': out_of_date, 'text--darken-1': out_of_date }">{{ version }}</span></h6>
+            <h6 class="ls-hide-on-med-and-up">v<span v-bind:class="{ 'red--text': out_of_date, 'text--darken-1': out_of_date }">{{ version }}</span></h6>
           </v-flex>
           <v-flex>
             <span style="font-size: 0.90rem;" v-if="last_modified">

@@ -31,11 +31,11 @@
         <div v-if="is_loading">
           <v-progress-linear :indeterminate="true"></v-progress-linear>
         </div>
-        <div v-else v-for="result in results.content" v-bind:key="result.name">
+        <div v-else v-for="(result, index) in results.content" v-bind:key="result.name">
           <package-section v-bind:name="result.name" v-bind:version="result.version" v-bind:out_of_date="result.out_of_date" v-bind:description="result.description"
                            v-bind:maintainer="result.maintainer" v-bind:last_modified="result.last_modified" v-bind:votes="result.votes"
                            v-bind:popularity="result.popularity"></package-section>
-          <divider/>
+          <divider v-if="index + 1 < results.count"/>
         </div>
       </v-card>
     </v-container>

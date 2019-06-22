@@ -82,6 +82,20 @@ function get_package_link(url) {
   }
 }
 
+function get_package_deps(pkgdeps) {
+  let pkgdeps_list = pkgdeps.querySelector('#pkgdepslist');
+  if (!pkgdeps_list)
+    return;
+  utils.to_array(pkgdeps_list.querySelectorAll('li')).map(li => {
+    utils.to_array(li.querySelectorAll('a')).forEach(a => {
+      if (a.getAttribute('href').startsWith('/packages/')) {
+        a.href = `/package/${a.getAttribute('href').replace('/packages/', '').replace('/', '')}`;
+      }
+    });
+    return li.innerHTML;
+  })
+}
+
 export default {
   build_url: build_url,
   get_statistics(callback) {
@@ -216,14 +230,7 @@ export default {
           conflicts: pkg['Conflicts'],
           dependencies: {
             count: pkg_deps_number,
-            items: utils.to_array(pkgdeps.querySelector('#pkgdepslist').querySelectorAll('li')).map(li => {
-              utils.to_array(li.querySelectorAll('a')).forEach(a => {
-                if (a.getAttribute('href').startsWith('/packages/')) {
-                  a.href = `/package/${a.getAttribute('href').replace('/packages/', '').replace('/', '')}`;
-                }
-              });
-              return li.innerHTML;
-            })
+            items: get_package_deps(pkgdeps)
           },
           required_by: {
             count: pkg_reqs_number,

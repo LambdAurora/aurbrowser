@@ -1,7 +1,7 @@
 <template>
   <v-app :dark="dark_mode" v-bind:class="{'page_background': !dark_mode, 'page_background_dark': dark_mode}">
     <v-toolbar dark app>
-      <v-toolbar-side-icon id="toolbar_side_icon" @click.stop="sidenav = !sidenav" class="ls-hide-on-large-and-up"></v-toolbar-side-icon>
+      <v-toolbar-side-icon id="toolbar_side_icon" aria-label="Menu" @click.stop="sidenav = !sidenav" class="ls-hide-on-large-and-up"></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-md-center" style="display: flex; align-items: center;">
         <img src="/aurbrowser_white_64.png" alt="aurbrowser logo" height="32" width="32" style="margin-right: 0.5em;"/>
         <router-link to="/home">AUR Browser</router-link>

@@ -3,7 +3,7 @@
   "short_name": "AURBrowser",
   "description": "A web AUR browser.",
   "display": "standalone",
-  "start_url": "/home",
+  "start_url": "/",
   "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#FFA000",
