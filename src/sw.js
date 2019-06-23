@@ -7,10 +7,6 @@
  * see the LICENSE file.
  */
 
-workbox.setConfig({
-  modulePathPrefix: '/lib/workbox/'
-});
-
 workbox.clientsClaim();
 workbox.skipWaiting();
 
