@@ -43,12 +43,11 @@
         <v-flex class="xs12 md4">
           <div class="icon-block center">
             <h2 class="center orange--text text--accent-2"><i class="fab fa-js"></i></h2>
-            <h5 class="center">JavaScript & PWA (WIP)</h5>
+            <h5 class="center">JavaScript & PWA</h5>
 
             <p class="light">
-              <span class="brand-title">AUR Browser</span> is built with modern JavaScript technologies. <br/> WIP: It's also a Progressive Web App: you can add it to your home
-              screen on your
-              mobile phone!
+              <span class="brand-title">AUR Browser</span> is built with modern JavaScript technologies. <br/> It's also a Progressive Web App: you can add it to your home
+              screen on your mobile phone!
             </p>
           </div>
         </v-flex>
@@ -109,7 +108,9 @@
             <h5 class="center">Contribute</h5>
 
             <p class="light">
-              Wants to contribute? Read the <router-link to="/about/contributing">contributing guide</router-link> then go ahead on <a href="https://github.com/LambdAurora/aurbrowser.git" target="_blank" class="orange--text text--accent-2">GitHub</a>, we don't
+              Wants to contribute? Read the
+              <router-link to="/about/contributing">contributing guide</router-link>
+              then go ahead on <a href="https://github.com/LambdAurora/aurbrowser.git" target="_blank" class="orange--text text--accent-2">GitHub</a>, we don't
               bite!
             </p>
           </div>
@@ -120,13 +121,13 @@
 </template>
 
 <script>
-  import CONSTANTS from '../constants';
+  import {VERSION} from '../constants';
 
   export default {
     name: "about",
     data() {
       return {
-        VERSION: CONSTANTS.VERSION,
+        VERSION: VERSION,
         page: {
           title: 'About',
           description: 'About AUR Browser.'

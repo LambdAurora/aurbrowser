@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import CONSTANTS from '../constants';
+  import * as CONSTANTS from '../constants';
   import aur from '../aur';
 
   import Divider from '../components/divider.vue';

@@ -94,7 +94,7 @@
     created() {
       aur.get_statistics(stats => {
         this.has_statistics_loaded = true;
-        this.statistics = utils.to_array(stats.querySelectorAll('tr')).map(stat => {
+        this.statistics = [...stats.querySelectorAll('tr')].map(stat => {
           return {name: stat.querySelector('td.stat-desc').innerText, data: stat.querySelectorAll('td')[1].innerText};
         });
       });

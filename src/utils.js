@@ -7,7 +7,7 @@
  * see the LICENSE file.
  */
 
-import CONSTANTS from './constants';
+import {CORS_PROXY} from './constants';
 
 let router;
 
@@ -17,7 +17,7 @@ export default {
   },
   fetch_raw: (url, proxy, lambda, error) => {
     if (proxy)
-      url = `${CONSTANTS.CORS_PROXY}${url}`;
+      url = `${CORS_PROXY}${url}`;
     fetch(`${url}`).then(res => {
       if (res.status === 200)
         res.text().then(content => {
@@ -34,14 +34,6 @@ export default {
   },
   search: (keywords, by) => {
     router.push(`/search?q=${keywords}&by=${by}`);
-  },
-  to_array: (obj) => {
-    let array = [];
-    // iterate backwards ensuring that length is an UInt32
-    for (let i = obj.length >>> 0; i--;) {
-      array[i] = obj[i];
-    }
-    return array;
   },
   convert_timestamp: (timestamp) => {
     let date_obj = new Date(timestamp * 1000);

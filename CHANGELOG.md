@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.2.1 :floppy_disk:
+
+PWA update! :tada:
+
+- Added PWA.
+- Added icons.
+- Removed axios.
+- Fixed CSP for about page.
+- Added dark theme switcher.
+- Rewrote constants.js.
+- Removed `utils.to_array()`.
+
 ## v1.2.0 :tada:
 
 The Vue.js rewrite. The true initial release. :tada:

@@ -12,12 +12,9 @@
 </template>
 
 <script>
-  import CONSTANTS from '../../constants';
+  import {VERSION} from '../../constants';
   import utils from '../../utils';
   import VueMarkdown from 'vue-markdown';
-  import axios from 'axios';
-
-  const markdown = require('../../../CONTRIBUTING.md');
 
   export default {
     name: "contributing",
@@ -26,7 +23,7 @@
     },
     data() {
       return {
-        VERSION: CONSTANTS.VERSION,
+        VERSION: VERSION,
         contributing: 'Loading...',
         anchor_attrs: {
           rel: 'noopener noreferrer nofollow'
@@ -38,7 +35,7 @@
       }
     },
     mounted() {
-      axios.get(markdown).then(res => this.contributing = res.data.replace('# Contributing to AUR Browser\n', ''));
+      import('../../../CONTRIBUTING.md').then(res => this.contributing = res.default.replace('# Contributing to AUR Browser\n', ''));
     },
     methods: {
       postrender: utils.markdown.postrender

@@ -12,12 +12,9 @@
 </template>
 
 <script>
-  import CONSTANTS from '../../constants';
+  import {VERSION} from '../../constants';
   import utils from '../../utils';
   import VueMarkdown from 'vue-markdown';
-  import axios from 'axios';
-
-  const markdown = require('../../../CHANGELOG.md');
 
   export default {
     name: "changelog",
@@ -26,7 +23,7 @@
     },
     data() {
       return {
-        VERSION: CONSTANTS.VERSION,
+        VERSION: VERSION,
         changelog: 'Loading...',
         anchor_attrs: {
           rel: 'noopener noreferrer nofollow'
@@ -38,7 +35,7 @@
       }
     },
     mounted() {
-      axios.get(markdown).then(res => this.changelog = res.data.replace('# Changelog\n', ''));
+      import('../../../CHANGELOG.md').then(res => this.changelog = res.default.replace('# Changelog\n', ''));
     },
     methods: {
       postrender: utils.markdown.postrender

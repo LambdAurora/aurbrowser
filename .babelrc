@@ -5,6 +5,7 @@
       "plugins": ["line-numbers"],
       "theme": "okaida",
       "css": false
-    }]
+    }],
+    "@babel/plugin-syntax-dynamic-import"
   ]
 }

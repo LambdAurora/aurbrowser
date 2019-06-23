@@ -10,9 +10,13 @@ module.exports = {
   },
   chainWebpack: config => {
     config.module.rule('loaders')
-      .test(/\.(png|svg|gif|md)$/)
+      .test(/\.(png|svg|gif)$/)
       .use('file')
       .loader('file-loader')
+      .end()
+      .test(/\.(md)$/)
+      .use('file')
+      .loader('raw-loader')
       .end();
   }
 };

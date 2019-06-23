@@ -106,7 +106,11 @@
         <divider/>
         <v-list-tile>
           <v-list-tile-action>
-            <v-switch v-model="dark_mode" color="primary" label="Dark mode"></v-switch>
+            <v-tooltip bottom>
+              <v-switch v-model="dark_mode" color="primary" label="Dark mode"></v-switch>
+              <span v-if="dark_mode">Switch to light mode.</span>
+              <span v-else>Switch to dark mode.</span>
+            </v-tooltip>
           </v-list-tile-action>
         </v-list-tile>
       </v-list>

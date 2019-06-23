@@ -7,29 +7,29 @@
  * see the LICENSE file.
  */
 
-import CONSTANTS from './constants';
+import {AUR_BASE_URL, AUR_RPC_URL, CORS_PROXY} from './constants';
 import utils from './utils';
 
 function build_url(page, details) {
   switch (page) {
     case 'main':
-      return CONSTANTS.AUR_BASE_URL;
+      return AUR_BASE_URL;
     case 'account':
-      return `${CONSTANTS.AUR_BASE_URL}/account/${details.user}/`;
+      return `${AUR_BASE_URL}/account/${details.user}/`;
     case 'packages':
-      return `${CONSTANTS.AUR_BASE_URL}/packages?SB=p&SO=d&O=${details.index}`;
+      return `${AUR_BASE_URL}/packages?SB=p&SO=d&O=${details.index}`;
     case 'package':
-      return `${CONSTANTS.AUR_BASE_URL}/packages/${details.package}/`;
+      return `${AUR_BASE_URL}/packages/${details.package}/`;
     case 'package_v2':
-      return `${CONSTANTS.AUR_RPC_URL}&type=info&arg[]=${details.package}`;
+      return `${AUR_RPC_URL}&type=info&arg[]=${details.package}`;
     case 'package_base':
-      return `${CONSTANTS.AUR_BASE_URL}/pkgbase/${details.package}/`;
+      return `${AUR_BASE_URL}/pkgbase/${details.package}/`;
     case 'package_pkgbuild':
-      return `${CONSTANTS.AUR_BASE_URL}/cgit/aur.git/plain/PKGBUILD?h=${details.package}`;
+      return `${AUR_BASE_URL}/cgit/aur.git/plain/PKGBUILD?h=${details.package}`;
     case 'search':
-      return `${CONSTANTS.AUR_RPC_URL}&type=search&by=${details.field}&arg=${details.keywords}`;
+      return `${AUR_RPC_URL}&type=search&by=${details.field}&arg=${details.keywords}`;
     default:
-      return CONSTANTS.AUR_BASE_URL;
+      return AUR_BASE_URL;
   }
 }
 
@@ -47,7 +47,7 @@ function fetch_rpc(url, lambda) {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
   });
-  fetch(`${CONSTANTS.CORS_PROXY}${url}`, {method: 'GET', mode: 'cors', headers: headers})
+  fetch(`${CORS_PROXY}${url}`, {method: 'GET', mode: 'cors', headers: headers})
     .then(res => check_status(res))
     .then(res => res.json())
     .then(res => lambda(res))
@@ -82,26 +82,12 @@ function get_package_link(url) {
   }
 }
 
-function get_package_deps(pkgdeps) {
-  let pkgdeps_list = pkgdeps.querySelector('#pkgdepslist');
-  if (!pkgdeps_list)
-    return;
-  utils.to_array(pkgdeps_list.querySelectorAll('li')).map(li => {
-    utils.to_array(li.querySelectorAll('a')).forEach(a => {
-      if (a.getAttribute('href').startsWith('/packages/')) {
-        a.href = `/package/${a.getAttribute('href').replace('/packages/', '').replace('/', '')}`;
-      }
-    });
-    return li.innerHTML;
-  })
-}
-
 export default {
   build_url: build_url,
   get_statistics(callback) {
     let page_doc = document.implementation.createHTMLDocument("Some page");
     let html = page_doc.createElement('html');
-    utils.fetch_raw(CONSTANTS.AUR_BASE_URL, true, content => {
+    utils.fetch_raw(AUR_BASE_URL, true, content => {
       html.innerHTML = content;
       page_doc.body.appendChild(html);
       callback(html.querySelector('div#pkg-stats table'));
@@ -114,7 +100,7 @@ export default {
       html.innerHTML = content;
       page_doc.body.appendChild(html);
       let pkglist_stats = html.querySelector('div.pkglist-stats p').innerText.replaceAll('\n', '').split(' ');
-      callback(utils.to_array(html.querySelector('table.results tbody').querySelectorAll('tr'))
+      callback([...html.querySelector('table.results tbody').querySelectorAll('tr')]
         .map(line => {
           let td = line.querySelectorAll('td');
           return {
@@ -151,6 +137,7 @@ export default {
       let pkg_reqs_number = pkgreqs.querySelector('h3').innerText.replace('Required by (', '').replace(')', '');
       let pkg_files_number = html.querySelector('div#pkgfiles').querySelector('h3').innerText.replace('Sources (', '').replace(')', '');
 
+      let pkg_deps_list = pkgdeps.querySelector('#pkgdepslist');
       let pkg_reqs_list = pkgreqs.querySelector('#pkgreqslist');
 
       // Fetch the comments of the package.
@@ -162,7 +149,7 @@ export default {
         // Get all of the pinned comments.
         let pkg_comments = pkg_comments_section[0].querySelectorAll('h4.comment-header');
         if (pkg_comments) {
-          pinned_comments = utils.to_array(pkg_comments)
+          pinned_comments = [...pkg_comments]
             .map(comment_header => {
               return {header: comment_header, content: pkg_comments_section[0].querySelector(`div#${comment_header.id}-content`)};
             })
@@ -186,7 +173,7 @@ export default {
         if (pkg_comments_section.length === 2) i = 1; else i = 0;
         let pkg_comments = pkg_comments_section[i].querySelectorAll('h4.comment-header');
         if (pkg_comments) {
-          comments = utils.to_array(pkg_comments)
+          comments = [...pkg_comments]
             .map(comment_header => {
               return {header: comment_header, content: pkg_comments_section[i].querySelector(`div#${comment_header.id}-content`)};
             })
@@ -230,12 +217,19 @@ export default {
           conflicts: pkg['Conflicts'],
           dependencies: {
             count: pkg_deps_number,
-            items: get_package_deps(pkgdeps)
+            items: pkg_deps_list ? [...pkg_deps_list.querySelectorAll('li')].map(li => {
+              [...li.querySelectorAll('a')].forEach(a => {
+                if (a.getAttribute('href').startsWith('/packages/')) {
+                  a.href = `/package/${a.getAttribute('href').replace('/packages/', '').replace('/', '')}`;
+                }
+              });
+              return li.innerHTML;
+            }) : []
           },
           required_by: {
             count: pkg_reqs_number,
-            items: pkg_reqs_list ? utils.to_array(pkg_reqs_list.querySelectorAll('li')).map(li => {
-              utils.to_array(li.querySelectorAll('a')).forEach(a => {
+            items: pkg_reqs_list ? [...pkg_reqs_list.querySelectorAll('li')].map(li => {
+              [...li.querySelectorAll('a')].forEach(a => {
                 if (a.getAttribute('href').startsWith('/packages/')) {
                   a.href = `/package/${a.getAttribute('href').replace('/packages/', '').replace('/', '')}`;
                 }
@@ -245,7 +239,7 @@ export default {
           },
           files: {
             count: pkg_files_number,
-            items: utils.to_array(html.querySelector('ul#pkgsrcslist').children).map(child => child.innerHTML)
+            items: [...html.querySelector('ul#pkgsrcslist').children].map(child => child.innerHTML)
           },
           comments: {
             pinned: pinned_comments,

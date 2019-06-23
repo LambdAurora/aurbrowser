@@ -7,7 +7,7 @@
  * see the LICENSE file.
  */
 
-import aurbrowser_package from '../package';
+import {VERSION} from './constants';
 import Vue from 'vue';
 import './plugins/vuetify';
 import VueHead from 'vue-head';
@@ -23,7 +23,7 @@ function is_by_filter_valid(by_filter) {
 }
 
 export default {
-  VERSION: aurbrowser_package.version,
+  VERSION: VERSION,
   is_search_valid(query, by_filter) {
     return query !== undefined && query.length !== 0 && is_by_filter_valid(by_filter);
   },
@@ -31,7 +31,7 @@ export default {
     Vue.use(VueHead);
     utils.init(router);
 
-    Vue.prototype.$dark_mode = false;
+    Vue.prototype.$dark_mode = true;
     Vue.prototype.$change_theme = function (theme) {
       this.$dark_mode = theme;
     };
