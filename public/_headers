@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy: default-src 'none'; font-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' cors.aurbrowser.tk; form-action 'self'; base-uri 'self'; manifest-src 'self'; img-src *; frame-ancestors 'self';
+  Content-Security-Policy: default-src 'none'; font-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src *; form-action 'self'; base-uri 'self'; manifest-src 'self'; img-src *; frame-ancestors 'self';
   x-content-type-options: nosniff
   x-frame-options: DENY
   x-xss-protection: 1; mode=block
