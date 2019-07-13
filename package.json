@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "material-design-icons-iconfont": "^4.0.5",
     "npm-font-open-sans": "^1.1.0",
     "prismjs": "^1.16.0",
@@ -17,17 +17,17 @@
     "register-service-worker": "^1.6.2",
     "roboto-fontface": "*",
     "vue": "^2.6.10",
-    "vue-head": "^2.1.1",
+    "vue-head": "^2.1.2",
     "vue-markdown": "^2.2.4",
-    "vue-router": "^3.0.6",
-    "vuetify": "^1.5.14"
+    "vue-router": "^3.0.7",
+    "vuetify": "^1.5.16"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.9.0",
-    "@vue/cli-plugin-babel": "^3.8.0",
-    "@vue/cli-plugin-eslint": "^3.8.0",
-    "@vue/cli-plugin-pwa": "^3.8.0",
-    "@vue/cli-service": "^3.8.3",
+    "@vue/cli-plugin-babel": "^3.9.2",
+    "@vue/cli-plugin-eslint": "^3.9.2",
+    "@vue/cli-plugin-pwa": "^3.9.0",
+    "@vue/cli-service": "^3.9.2",
     "@vue/eslint-config-prettier": "^4.0.1",
     "babel-plugin-prismjs": "^1.0.2",
     "babel-plugin-transform-imports": "^1.5.1",

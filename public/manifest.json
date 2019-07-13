@@ -9,22 +9,22 @@
   "theme_color": "#FFA000",
   "icons": [
     {
-      "src": "aurbrowser_2_512.png",
+      "src": "ressources/icons/aurbrowser_blue_512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "aurbrowser_2_256.png",
+      "src": "ressources/icons/aurbrowser_blue_256.png",
       "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "aurbrowser_2_128.png",
+      "src": "ressources/icons/aurbrowser_blue_128.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "aurbrowser_2_64.png",
+      "src": "ressources/icons/aurbrowser_blue_64.png",
       "sizes": "64x64",
       "type": "image/png"
     }
