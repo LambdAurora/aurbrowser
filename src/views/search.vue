@@ -25,6 +25,10 @@
         <v-flex class="xs3">
           <v-combobox v-model="search_data.sort" v-on:input="search" type="button" :items="search_sort_items" label="Sort by:" hide-details></v-combobox>
         </v-flex>
+        <v-spacer></v-spacer>
+        <v-flex class="xs3">
+          <v-checkbox v-model="search_data.ignore_out_of_date" v-on:change="search" color="primary" label="Ignore out of date"></v-checkbox>
+        </v-flex>
       </v-layout>
     </div>
     <v-container>
@@ -38,7 +42,7 @@
         </div>
         <div v-else v-for="(result, index) in results.content" v-bind:key="result.name">
           <package-section v-bind:name="result.name" v-bind:version="result.version" v-bind:out_of_date="result.out_of_date" v-bind:description="result.description"
-                           v-bind:maintainer="result.maintainer" v-bind:last_modified="result.last_modified" v-bind:votes="result.votes"
+                           v-bind:maintainer="result.maintainer" v-bind:last_modified="utils.convert_timestamp(result.last_modified)" v-bind:votes="result.votes"
                            v-bind:popularity="result.popularity"></package-section>
           <divider v-if="index + 1 < results.count"/>
         </div>
@@ -79,6 +83,14 @@
         type: String,
         default: 'name-desc'
       },
+      sort: {
+        type: String,
+        default: 'No sort'
+      },
+      hide_out_of_date: {
+        type: Boolean,
+        default: false,
+      },
       dark_theme: Boolean
     },
     components: {
@@ -93,11 +105,13 @@
         search_data: {
           query: this.query,
           by: {text: get_by_name_from_value(this.by), value: this.by},
-          sort: 'No sort'
+          sort: this.sort,
+          ignore_out_of_date: this.hide_out_of_date
         },
         aquery: null,
         search_by_items: [{text: 'Name, Description', value: 'name-desc'}, {text: 'Name only', value: 'name'}, {text: 'Maintainer', value: 'maintainer'}],
-        search_sort_items: ['No sort', 'Name', 'Votes'],
+        search_sort_items: ['No sort', 'Name', 'Votes', 'Last modified'],
+        utils: utils,
         results: {
           count: 0,
           entries: [],
@@ -125,6 +139,22 @@
     },
     methods: {
       update_results(content) {
+        switch (this.search_data.sort) {
+          case 'Name':
+            content = content.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+          case 'Votes':
+            content = content.sort((a, b) => b.votes - a.votes);
+            break;
+          case 'Last modified':
+            content = content.sort((a, b) => b.last_modified - a.last_modified);
+            break;
+          case "No sort":
+          default:
+            break;
+        }
+        if (this.search_data.ignore_out_of_date)
+          content = content.filter(r => !r.out_of_date);
         this.results.count = content.length;
         this.results.entries = content.map(r => r.name);
         if (this.aquery != null)
@@ -141,17 +171,6 @@
           return;
         }
         aur.search(this.query, this.by, results => {
-          switch (this.search_data.sort) {
-            case 'Name':
-              results = results.sort((a, b) => a.name.localeCompare(b.name));
-              break;
-            case 'Votes':
-              results = results.sort((a, b) => b.votes - a.votes);
-              break;
-            case "No sort":
-            default:
-              break;
-          }
           this.update_results(results);
           this.is_loading = false;
         });
@@ -161,7 +180,7 @@
       },
       search() {
         this.$nextTick(function () {
-          utils.search(this.search_query, this.search_data.by.value);
+          utils.search(this.search_query, this.search_data.by.value, this.search_data.sort, this.search_data.ignore_out_of_date);
           this.$nextTick(this.update);
         });
       }

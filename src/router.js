@@ -74,7 +74,7 @@ export const routes = [
     path: '/search',
     name: 'Search',
     component: Search,
-    props: (route) => ({query: route.query.q, by: route.query.by}),
+    props: (route) => ({query: route.query.q, by: route.query.by, sort: route.query.sort, hide_out_of_date: route.query.ignore_ood}),
     meta: {
       icon: 'search',
       link: true

@@ -32,8 +32,8 @@ export default {
       console.log(`-- Cannot retrieve page '${url}', error: ${error.message}.`);
     });
   },
-  search: (keywords, by) => {
-    router.push(`/search?q=${keywords}&by=${by}`);
+  search: (keywords, by, sort, ignore_out_of_date) => {
+    router.push(`/search?q=${keywords}&by=${by}&sort=${sort}&ignore_ood=${ignore_out_of_date}`);
   },
   convert_timestamp: (timestamp) => {
     let date_obj = new Date(timestamp * 1000);

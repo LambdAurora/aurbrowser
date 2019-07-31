@@ -1,6 +1,6 @@
 {
   "name": "aurbrowser",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "private": true,
   "scripts": {
     "serve": "cross-env vue-cli-service serve",

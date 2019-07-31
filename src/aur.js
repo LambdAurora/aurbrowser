@@ -260,8 +260,8 @@ export default {
           name: result['Name'],
           version: result['Version'],
           description: result['Description'],
-          out_of_date: result['OutOfDate'] != null,
-          last_modified: utils.convert_timestamp(result['LastModified']),
+          out_of_date: !!result['OutOfDate'],
+          last_modified: result['LastModified'],
           votes: result['NumVotes'],
           popularity: result['Popularity'],
           maintainer: result['Maintainer']

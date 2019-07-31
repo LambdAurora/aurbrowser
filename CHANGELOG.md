@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.2.3
+
+(Just forgot things for v1.2.2)
+
+- Added ignore out of date in search.
+- Added moe options in search sorting.
+- Fixed non persistent search options.
+
 ## v1.2.2
 
 - Added search sorting.
