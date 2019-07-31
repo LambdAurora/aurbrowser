@@ -21,6 +21,11 @@
           </v-autocomplete>
         </v-flex>
       </v-layout>
+      <v-layout v-bind:class="{'grey lighten-2 elevation-2': !dark_theme, 'grey darken-2 elevation-2': dark_theme}" row wrap style="padding: 0 .75rem .5rem;">
+        <v-flex class="xs3">
+          <v-combobox v-model="search_data.sort" v-on:input="search" type="button" :items="search_sort_items" label="Sort by:" hide-details></v-combobox>
+        </v-flex>
+      </v-layout>
     </div>
     <v-container>
       <v-card class="elevation-6">
@@ -88,9 +93,11 @@
         search_data: {
           query: this.query,
           by: {text: get_by_name_from_value(this.by), value: this.by},
+          sort: 'No sort'
         },
         aquery: null,
         search_by_items: [{text: 'Name, Description', value: 'name-desc'}, {text: 'Name only', value: 'name'}, {text: 'Maintainer', value: 'maintainer'}],
+        search_sort_items: ['No sort', 'Name', 'Votes'],
         results: {
           count: 0,
           entries: [],
@@ -134,6 +141,17 @@
           return;
         }
         aur.search(this.query, this.by, results => {
+          switch (this.search_data.sort) {
+            case 'Name':
+              results = results.sort((a, b) => a.name.localeCompare(b.name));
+              break;
+            case 'Votes':
+              results = results.sort((a, b) => b.votes - a.votes);
+              break;
+            case "No sort":
+            default:
+              break;
+          }
           this.update_results(results);
           this.is_loading = false;
         });

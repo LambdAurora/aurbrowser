@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.2
+
+- Added search sorting.
+
 ## v1.2.1 :floppy_disk:
 
 PWA update! :tada:
