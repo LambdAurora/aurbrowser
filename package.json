@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.19",
     "material-design-icons-iconfont": "^4.0.5",
     "npm-font-open-sans": "^1.1.0",
     "prismjs": "^1.16.0",
