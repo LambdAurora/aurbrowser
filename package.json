@@ -12,7 +12,7 @@
     "lodash": "^4.17.21",
     "material-design-icons-iconfont": "^4.0.5",
     "npm-font-open-sans": "^1.1.0",
-    "prismjs": "^1.23.0",
+    "prismjs": "^1.25.0",
     "raw-loader": "^3.0.0",
     "register-service-worker": "^1.6.2",
     "roboto-fontface": "*",
